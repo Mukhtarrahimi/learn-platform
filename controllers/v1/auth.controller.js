@@ -18,17 +18,12 @@ const register = async (req, res) => {
       email,
       hash_password: password,
       phone,
-      role: role || 'student', // default
+      role: 'student',
     });
-    // Delete Password
-    const userSafe = user.toObject();
-    delete userSafe.hash_password;
-    delete userSafe.password;
-
     res.status(201).json({
       success: true,
       message: 'User successfully registered',
-      user: userSafe,
+      user,
     });
   } catch (err) {
     console.error(err);

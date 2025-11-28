@@ -1,8 +1,16 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
+const path = require('path');
 
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+app.use(
+  '/courses/covers',
+  express.static(path.join(__dirname, 'public', 'courses', 'covers'))
+);
 
 // Routes
 

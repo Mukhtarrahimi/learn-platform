@@ -20,11 +20,15 @@ const register = async (req, res) => {
       phone,
       role: role || 'student', // default
     });
+    // Delete Password
+    const userSafe = user.toObject();
+    delete userSafe.hash_password;
+    delete userSafe.password;
 
     res.status(201).json({
       success: true,
       message: 'User successfully registered',
-      user,
+      user: userSafe,
     });
   } catch (err) {
     console.error(err);

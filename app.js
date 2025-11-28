@@ -7,10 +7,7 @@ const path = require('path');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use(
-  '/courses/covers',
-  express.static(path.join(__dirname, 'public', 'courses', 'covers'))
-);
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 // Routes
 

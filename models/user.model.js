@@ -37,10 +37,6 @@ const userSchema = new mongoose.Schema(
       required: true,
       select: false,
     },
-    isActive: {
-      type: Boolean,
-      default: true,
-    },
     status: {
       type: String,
       enum: ['active', 'blocked', 'banned'],

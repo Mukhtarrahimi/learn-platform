@@ -30,6 +30,7 @@ const userSchema = new mongoose.Schema(
     phone: {
       type: String,
       required: true,
+      unique: true,
     },
     hash_password: {
       type: String,
@@ -39,6 +40,22 @@ const userSchema = new mongoose.Schema(
     isActive: {
       type: Boolean,
       default: true,
+    },
+    status: {
+      type: String,
+      enum: ['active', 'blocked', 'banned'],
+      default: 'active',
+      index: true,
+    },
+
+    blockedAt: {
+      type: Date,
+      default: null,
+    },
+
+    blockedReason: {
+      type: String,
+      default: null,
     },
     role: {
       type: String,

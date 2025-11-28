@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema(
       select: false,
     },
     isActive: {
-      type: Bolean,
+      type: Boolean,
       default: true,
     },
     role: {
@@ -60,6 +60,13 @@ userSchema.pre('save', async function () {
 //compare password
 userSchema.methods.comparePassword = function (password) {
   return bcrypt.compare(password, this.hash_password);
+};
+
+// Delete password
+userSchema.methods.toJSON = function () {
+  const obj = this.toObject();
+  delete obj.hash_password;
+  return obj;
 };
 
 module.exports = mongoose.model('User', userSchema);

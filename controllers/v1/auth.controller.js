@@ -93,5 +93,34 @@ const login = async (req, res) => {
     });
   }
 };
+// LOGOUT
+const logout = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    user.refreshToken = null;
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: 'User logged out successfully',
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: 'Error in logout API',
+      error: err.message,
+    });
+  }
+};
 
 module.exports = { register, login };

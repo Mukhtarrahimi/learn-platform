@@ -2,7 +2,7 @@ const User = require('../../models/user.model');
 // GET ME
 const getMe = async (req, res) => {
   try {
-    const userId = req.params.id;
+    const userId = req.user.id;
     const user = await User.findById(userId).select(
       '-hash_password -refresh_Token'
     );

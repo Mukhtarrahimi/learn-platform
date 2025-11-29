@@ -4,6 +4,7 @@ const {
   register,
   login,
   logout,
+  refreshToken,
 } = require('../../controllers/v1/auth.controller');
 const validate = require('../../middlewares/validate');
 const verifyToken = require('../../middlewares/verifyToken');
@@ -19,5 +20,6 @@ router.post('/register', validate(registerSchema), register);
 router.post('/login', validate(loginSchema), login);
 // LOGOUT
 router.post('/logout', verifyToken, logout);
+router.post('/refresh-token', verifyToken, refreshToken);
 
 module.exports = router;

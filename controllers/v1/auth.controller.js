@@ -123,4 +123,41 @@ const logout = async (req, res) => {
   }
 };
 
-module.exports = { register, login, logout };
+// REFRESH TOKEN
+const refreshToken = async (req, res) => {
+  try {
+    const { refreshToken } = req.body;
+    if (!refreshToken)
+      return res
+        .status(401)
+        .json({ success: false, message: 'No refresh token provided' });
+
+    const user = await User.findOne({ refreshToken });
+    if (!user)
+      return res
+        .status(403)
+        .json({ success: false, message: 'Invalid refresh token' });
+
+    jwt.verify(
+      refreshToken,
+      process.env.REFRESH_TOKEN_SECRET,
+      (err, decoded) => {
+        if (err)
+          return res
+            .status(403)
+            .json({ success: false, message: 'Invalid refresh token' });
+
+        const newAccessToken = accessToken(user);
+        res.status(200).json({ accessToken: newAccessToken });
+      }
+    );
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Error in refresh token',
+      error: err.message,
+    });
+  }
+};
+
+module.exports = { register, login, logout, refreshToken };

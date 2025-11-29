@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { register, login } = require('../../controllers/v1/auth.controller');
+const {
+  register,
+  login,
+  logout,
+} = require('../../controllers/v1/auth.controller');
 const validate = require('../../middlewares/validate');
+const verifyToken = require('../../middlewares/verifyToken');
+
 const {
   registerSchema,
   loginSchema,
@@ -11,5 +17,7 @@ const {
 router.post('/register', validate(registerSchema), register);
 // LOGIN
 router.post('/login', validate(loginSchema), login);
+// LOGOUT
+router.post('/logout', verifyToken, logout);
 
 module.exports = router;

@@ -3,6 +3,7 @@ const router = express.Router();
 const verifyToken = require('../../middlewares/verifyToken');
 const validate = require('../../middlewares/validate');
 const checkUserStatus = require('../../middlewares/checkUserStatus');
+const checkAdmin = require('../../middlewares/checkAdmin');
 const {
   updateProfileSchema,
   changePasswordSchema,

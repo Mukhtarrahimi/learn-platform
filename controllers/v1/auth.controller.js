@@ -162,6 +162,12 @@ const refreshTokenController = async (req, res) => {
       return res
         .status(403)
         .json({ success: false, message: 'Invalid refresh token' });
+    if (user.status !== 'active') {
+      return res.status(403).json({
+        success: false,
+        message: 'Account is not active',
+      });
+    }
 
     jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err) => {
       if (err)

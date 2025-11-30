@@ -7,8 +7,25 @@ const register = async (req, res) => {
   try {
     const { name, username, email, phone, password, role } = req.body;
 
-    const existUser = await User.findOne({ $or: [{ email }, { username }] });
+    const existUser = await User.findOne({
+      $or: [{ email }, { username }, { phone }],
+    });
+
     if (existUser) {
+      if (existUser.status === 'banned') {
+        return res.status(403).json({
+          success: false,
+          message: 'Your account has been permanently banned',
+        });
+      }
+
+      if (existUser.status === 'blocked') {
+        return res.status(403).json({
+          success: false,
+          message: 'Your account is temporarily blocked',
+        });
+      }
+
       return res.status(409).json({
         success: false,
         message: 'User already exists',

@@ -1,37 +1,33 @@
 const User = require('../../models/user.model');
+const bcrypt = require('bcryptjs');
+
 // GET ME
 const getMe = async (req, res) => {
   try {
-    const userId = req.user.id;
-    const user = await User.findById(userId).select(
-      '-hash_password -refresh_Token'
+    const user = await User.findById(req.user.id).select(
+      '-hash_password -refreshToken'
     );
+
     if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: 'user not found',
-      });
+      return res
+        .status(404)
+        .json({ success: false, message: 'User not found' });
     }
-    res.status(200).json({
-      success: true,
-      user,
-    });
+
+    res.status(200).json({ success: true, user });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({
-      success: false,
-      message: 'Error in login API',
-    });
+    res.status(500).json({ success: false, message: 'Error getting user' });
   }
 };
+
 // UPDATE PROFILE
 const updateProfile = async (req, res) => {
   try {
-    const { name, phone, email } = req.body;
+    const { name, phone, profile } = req.body;
 
     const user = await User.findByIdAndUpdate(
       req.user.id,
-      { name, phone, email },
+      { name, phone, profile },
       { new: true }
     ).select('-hash_password -refreshToken');
 
@@ -70,4 +66,6 @@ const changePassword = async (req, res) => {
 
 module.exports = {
   getMe,
+  updateProfile,
+  changePassword,
 };

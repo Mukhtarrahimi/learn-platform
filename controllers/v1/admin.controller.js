@@ -52,7 +52,34 @@ const getUserById = async (req, res) => {
   }
 };
 
+// GET USER BY USERNAME OR EMAIL
+const getUserByQuery = async (req, res) => {
+  try {
+    const { username, email } = req.body;
+    const user = await User.find({
+      $or: [{ username }, { email }],
+    }).select('-hash_password -refreshToken');
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'no user found',
+      });
+    }
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching user by query',
+      error: err.message,
+    });
+  }
+};
+
 module.exports = {
   getAllUser,
   getUserById,
+  getUserByQuery,
 };

@@ -13,14 +13,9 @@ const {
 } = require('../../controllers/v1/user.controller');
 
 router.get('/me', verifyToken, getMe);
+router.put('/me', verifyToken, validate(updateProfileSchema), updateProfile);
 router.put(
-  '/profile',
-  verifyToken,
-  validate(updateProfileSchema),
-  updateProfile
-);
-router.put(
-  '/change-password',
+  '/me/password',
   verifyToken,
   validate(changePasswordSchema),
   changePassword

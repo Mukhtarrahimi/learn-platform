@@ -85,8 +85,49 @@ const getUserByQuery = async (req, res) => {
     });
   }
 };
+
+// DELETE USER
+const deleteUser = async (req, res) => {
+  try {
+    const { id, email } = req.body;
+    if (!id || !email) {
+      return res.status(401).json({
+        success: false,
+        message: 'please provide user id or email',
+      });
+    }
+    const query = {};
+    if (id) query._id = id;
+    if (email) query.email = email;
+    const user = await User.findOneAndDelete(query);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'User deleted successfully',
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        username: user.username,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Error delete user by id',
+      error: err.message,
+    });
+  }
+};
 module.exports = {
   getAllUser,
   getUserById,
   getUserByQuery,
+  deleteUser,
 };

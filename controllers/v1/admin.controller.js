@@ -1,6 +1,7 @@
 const User = require('../../models/user.model');
 const bcrypt = require('bcryptjs');
 
+// GET ALL USERS
 const getAllUser = async (req, res) => {
   try {
     const users = await User.find().select('-hash_password -refreshToken');
@@ -25,6 +26,33 @@ const getAllUser = async (req, res) => {
   }
 };
 
+// GER USER BY ID
+const getUserById = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const user = await User.findById(userId).select(
+      '-hash_password -refreshToken'
+    );
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'no user found',
+      });
+    }
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching user by id',
+      error: err.message,
+    });
+  }
+};
+
 module.exports = {
   getAllUser,
+  getUserById,
 };

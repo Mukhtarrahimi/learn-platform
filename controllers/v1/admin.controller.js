@@ -52,32 +52,39 @@ const getUserById = async (req, res) => {
   }
 };
 
-// GET USER BY USERNAME OR EMAIL
+// GET USER BY QUERY (username, email, status)
 const getUserByQuery = async (req, res) => {
   try {
-    const { username, email } = req.body;
-    const user = await User.find({
-      $or: [{ username }, { email }],
-    }).select('-hash_password -refreshToken');
-    if (!user) {
+    const { username, email, status } = req.query;
+
+    // Build dynamic query object
+    const query = {};
+    if (username) query.username = username;
+    if (email) query.email = email;
+    if (status) query.status = status;
+
+    const users = await User.find(query).select('-hash_password -refreshToken');
+
+    if (!users || users.length === 0) {
       return res.status(404).json({
         success: false,
-        message: 'no user found',
+        message: 'No users found',
       });
     }
+
     res.status(200).json({
       success: true,
-      user,
+      count: users.length,
+      users,
     });
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: 'Error fetching user by query',
+      message: 'Error fetching users by query',
       error: err.message,
     });
   }
 };
-
 module.exports = {
   getAllUser,
   getUserById,

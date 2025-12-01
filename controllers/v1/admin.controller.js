@@ -181,10 +181,9 @@ const changeUserStatus = async (req, res) => {
 };
 
 // CREATE NEW USER
-// REGISTER
 const createUserByAdmin = async (req, res) => {
   try {
-    const { name, username, email, phone, password, role } = req.body;
+    const { name, username, email, phone, password, role, status } = req.body;
 
     const existUser = await User.findOne({
       $or: [{ email }, { username }, { phone }],
@@ -217,6 +216,7 @@ const createUserByAdmin = async (req, res) => {
       email,
       hash_password: password,
       phone,
+      status,
       role: role,
     });
 
@@ -235,6 +235,50 @@ const createUserByAdmin = async (req, res) => {
   }
 };
 
+const updateUserByAdmin = async (req, res) => {
+  try {
+    const { name, username, email, phone, role, status, blockedReason } =
+      req.body;
+    const { id } = req.params;
+
+    const allowedRoles = ['student', 'teacher', 'admin'];
+    const allowedStatus = ['active', 'blocked', 'banned'];
+
+    const updatedData = {
+      name,
+      username,
+      email,
+      phone,
+    };
+
+    if (role && allowedRoles.includes(role)) updatedData.role = role;
+    if (status && allowedStatus.includes(status)) updatedData.status = status;
+    if (blockedReason) updatedData.blockedReason = blockedReason;
+
+    const user = await User.findByIdAndUpdate(id, updatedData, {
+      new: true,
+    }).select('-hash_password -refreshToken');
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: 'User not found' });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'User updated successfully',
+      user,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Error updating user',
+      error: err.message,
+    });
+  }
+};
+
 module.exports = {
   getAllUser,
   getUserById,
@@ -242,4 +286,5 @@ module.exports = {
   deleteUser,
   changeUserStatus,
   createUserByAdmin,
+  updateUserByAdmin,
 };

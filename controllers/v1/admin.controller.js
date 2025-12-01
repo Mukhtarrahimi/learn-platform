@@ -126,9 +126,66 @@ const deleteUser = async (req, res) => {
     });
   }
 };
+
+const changeUserStatus = async (req, res) => {
+  try {
+    const { status, reason } = req.body;
+    const id = req.params.id;
+
+    // Validate status
+    if (!['active', 'blocked', 'banned'].includes(status)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid status. Choose: active, blocked, banned',
+      });
+    }
+
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    // Update status
+    user.status = status;
+
+    if (status === 'blocked' || status === 'banned') {
+      user.blockedAt = new Date();
+      user.blockedReason =
+        reason ||
+        (status === 'banned' ? 'Banned by admin' : 'Blocked by admin');
+    } else if (status === 'active') {
+      user.blockedAt = null;
+      user.blockedReason = null;
+    }
+
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: `User status changed to ${status} successfully`,
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        status: user.status,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Error changing user status',
+      error: err.message,
+    });
+  }
+};
+
 module.exports = {
   getAllUser,
   getUserById,
   getUserByQuery,
   deleteUser,
+  changeUserStatus,
 };

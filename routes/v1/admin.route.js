@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const verifyToken = require('../../middlewares/verifyToken');
 const checkAdmin = require('../../middlewares/checkAdmin');
+const validate = require('../../middlewares/validate');
+const { registerSchema } = require('../../validators/user.validator');
+
 const {
   getAllUser,
   getUserById,
@@ -12,9 +15,21 @@ const {
 } = require('../../controllers/v1/admin.controller');
 
 // POST create new user
-router.post('/users/register', verifyToken, checkAdmin, createUserByAdmin);
+router.post(
+  '/users/register',
+  verifyToken,
+  checkAdmin,
+  validate(registerSchema),
+  createUserByAdmin
+);
 // GET all users
-router.get('/users', verifyToken, checkAdmin, getAllUser);
+router.get(
+  '/users',
+  verifyToken,
+  checkAdmin,
+
+  getAllUser
+);
 // GET user by query (username, email, status)
 router.get('/users/search', verifyToken, checkAdmin, getUserByQuery);
 

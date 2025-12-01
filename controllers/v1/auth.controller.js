@@ -38,7 +38,7 @@ const register = async (req, res) => {
       email,
       hash_password: password,
       phone,
-      role: role || 'student',
+      role: 'student',
     });
 
     res.status(201).json({

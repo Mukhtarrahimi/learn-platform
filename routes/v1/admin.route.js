@@ -8,8 +8,11 @@ const {
   getUserByQuery,
   deleteUser,
   changeUserStatus,
+  createUserByAdmin,
 } = require('../../controllers/v1/admin.controller');
 
+// POST create new user
+router.post('/users/register', verifyToken, checkAdmin, createUserByAdmin);
 // GET all users
 router.get('/users', verifyToken, checkAdmin, getAllUser);
 // GET user by query (username, email, status)

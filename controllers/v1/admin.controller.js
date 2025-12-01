@@ -78,6 +78,7 @@ const getUserByQuery = async (req, res) => {
       users,
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json({
       success: false,
       message: 'Error fetching users by query',

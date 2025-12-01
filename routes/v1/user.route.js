@@ -11,7 +11,6 @@ const {
   getMe,
   updateProfile,
   changePassword,
-  getAllUser,
 } = require('../../controllers/v1/user.controller');
 
 router.get('/me', checkUserStatus, verifyToken, getMe);

@@ -7,6 +7,7 @@ const {
   getUserById,
   getUserByQuery,
   deleteUser,
+  changeUserStatus,
 } = require('../../controllers/v1/admin.controller');
 
 // GET all users
@@ -19,5 +20,8 @@ router.get('/users/:id', verifyToken, checkAdmin, getUserById);
 
 // DELETE user by id or email
 router.delete('/users/delete', verifyToken, checkAdmin, deleteUser);
+
+// Change User Status
+router.put('/users/:id/status', verifyToken, checkAdmin, changeUserStatus);
 
 module.exports = router;

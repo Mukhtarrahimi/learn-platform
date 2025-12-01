@@ -3,7 +3,10 @@ const router = express.Router();
 const verifyToken = require('../../middlewares/verifyToken');
 const checkAdmin = require('../../middlewares/checkAdmin');
 const validate = require('../../middlewares/validate');
-const { registerSchema } = require('../../validators/user.validator');
+const {
+  registerSchema,
+  updateProfileSchema,
+} = require('../../validators/user.validator');
 
 const {
   getAllUser,
@@ -12,6 +15,7 @@ const {
   deleteUser,
   changeUserStatus,
   createUserByAdmin,
+  updateUserByAdmin,
 } = require('../../controllers/v1/admin.controller');
 
 // POST create new user
@@ -22,6 +26,15 @@ router.post(
   validate(registerSchema),
   createUserByAdmin
 );
+// PUT update profile
+router.put(
+  '/users/:id',
+  verifyToken,
+  checkAdmin,
+  validate(updateProfileSchema),
+  updateUserByAdmin
+);
+
 // GET all users
 router.get(
   '/users',

@@ -13,7 +13,6 @@ const createCourse = async (req, res) => {
       tags,
     } = req.body;
 
-    // مدرس از توکن استخراج می‌شود
     const teacherId = req.user.id;
 
     const course = await Course.create({
@@ -26,7 +25,7 @@ const createCourse = async (req, res) => {
       language,
       tags,
       teacher: teacherId,
-      status: 'draft', // پیش‌فرض: دوره باید ابتدا پیش‌نویس باشد
+      status: 'draft',
     });
 
     res.status(201).json({

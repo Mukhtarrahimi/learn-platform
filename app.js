@@ -19,7 +19,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/users', userRoute);
 app.use('/api/v1/admin', adminRoute);
-app.use('/api/v1/course', courseRoute);
+app.use('/api/v1/courses', courseRoute);
 
 // Route 404
 app.use((req, res, next) => {

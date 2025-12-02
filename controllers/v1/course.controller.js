@@ -16,12 +16,9 @@ const createCourse = async (req, res) => {
     } = req.body;
 
     let finalTeacher;
-
     if (req.user.role === 'teacher') {
       finalTeacher = req.user.id;
-    }
-
-    if (req.user.role === 'admin') {
+    } else if (req.user.role === 'admin') {
       if (!teacherId) {
         return res.status(400).json({
           success: false,

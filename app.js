@@ -7,6 +7,7 @@ const path = require('path');
 const authRoute = require('./routes/v1/auth.route');
 const userRoute = require('./routes/v1/user.route');
 const adminRoute = require('./routes/v1/admin.route');
+const courseRoute = require('./routes/v1/course.route');
 
 // Middleware
 app.use(express.json());
@@ -18,6 +19,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/users', userRoute);
 app.use('/api/v1/admin', adminRoute);
+app.use('/api/v1/course', courseRoute);
 
 // Route 404
 app.use((req, res, next) => {

@@ -1,4 +1,5 @@
 const Course = require('../../models/course.model');
+const User = require('../../models/user.model');
 
 const createCourse = async (req, res) => {
   try {
@@ -11,9 +12,33 @@ const createCourse = async (req, res) => {
       level,
       language,
       tags,
+      teacherId,
     } = req.body;
 
-    const teacherId = req.user.id;
+    let finalTeacher;
+
+    if (req.user.role === 'teacher') {
+      finalTeacher = req.user.id;
+    }
+
+    if (req.user.role === 'admin') {
+      if (!teacherId) {
+        return res.status(400).json({
+          success: false,
+          message: 'Admin must provide teacherId',
+        });
+      }
+      finalTeacher = teacherId;
+    }
+
+    const teacher = await User.findById(finalTeacher);
+
+    if (!teacher || teacher.role !== 'teacher') {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid teacherId. User must be a teacher.',
+      });
+    }
 
     const course = await Course.create({
       title,
@@ -24,7 +49,7 @@ const createCourse = async (req, res) => {
       level,
       language,
       tags,
-      teacher: teacherId,
+      teacher: finalTeacher,
       status: 'draft',
     });
 
@@ -34,8 +59,7 @@ const createCourse = async (req, res) => {
       course,
     });
   } catch (err) {
-    console.log(err);
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: 'Error in create course API',
       error: err.message,

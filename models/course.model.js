@@ -21,7 +21,7 @@ const courseSchema = new mongoose.Schema(
     },
 
     thumbnail: {
-      type: String, // مسیر عکس کاور
+      type: String,
       default: null,
     },
 
@@ -51,7 +51,7 @@ const courseSchema = new mongoose.Schema(
       {
         title: String,
         videoUrl: String,
-        duration: Number, // دقیقه
+        duration: Number,
       },
     ],
 

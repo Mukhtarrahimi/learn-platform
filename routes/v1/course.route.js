@@ -16,6 +16,7 @@ const {
   deleteCourse,
   getAllCourses,
   getCourseById,
+  changeStatus,
 } = require('../../controllers/v1/course.controller');
 
 // POST -> Create New Course
@@ -43,5 +44,8 @@ router.get('/', verifyToken, checkAdminOrTeacher, getAllCourses);
 
 // GET -> Get Course By Id
 router.get('/:id', verifyToken, checkAdminOrTeacher, getCourseById);
+
+// PUT -> Change Course Status
+router.put('/:id', verifyToken, checkAdmin, changeStatus);
 
 module.exports = router;

@@ -366,4 +366,5 @@ module.exports = {
   deleteCourse,
   getAllCourses,
   getCourseById,
+  changeStatus,
 };

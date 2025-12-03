@@ -220,4 +220,4 @@ const deleteCourse = async (req, res) => {
   }
 };
 
-module.exports = { createCourse, updateCourse };
+module.exports = { createCourse, updateCourse, deleteCourse };

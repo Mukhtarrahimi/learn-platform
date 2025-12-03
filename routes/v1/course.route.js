@@ -13,6 +13,7 @@ const {
 const {
   createCourse,
   updateCourse,
+  deleteCourse,
 } = require('../../controllers/v1/course.controller');
 
 // POST -> Create New Course
@@ -32,4 +33,6 @@ router.put(
   updateCourse
 );
 
+// DELETE -> Remove course
+router.delete('/:id', verifyToken, checkAdminOrTeacher, deleteCourse);
 module.exports = router;

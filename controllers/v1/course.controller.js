@@ -227,4 +227,47 @@ const deleteCourse = async (req, res) => {
   }
 };
 
+const getAllCourses = async (req, res) => {
+  try {
+    let courses;
+
+    if (req.user.role === 'admin') {
+      courses = await Course.find();
+    } else if (req.user.role === 'teacher') {
+      courses = await Course.find({ teacher: req.user.id });
+
+      if (courses.length === 0) {
+        return res.status(404).json({
+          success: false,
+          message: 'No courses found for this teacher',
+        });
+      }
+    } else {
+      return res.status(403).json({
+        success: false,
+        message: 'You do not have permission to view courses.',
+      });
+    }
+
+    if (!courses || courses.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'No courses available',
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      courses,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      success: false,
+      message: 'Error in fetching courses',
+      error: err.message,
+    });
+  }
+};
+
 module.exports = { createCourse, updateCourse, deleteCourse };

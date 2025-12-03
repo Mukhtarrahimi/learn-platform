@@ -283,16 +283,20 @@ const getCourseById = async (req, res) => {
     }
 
     let course;
+
     if (req.user.role === 'admin') {
-      course = await Course.findById(courseId);
+      course = await Course.findById(courseId).populate('lessons');
     } else if (req.user.role === 'teacher') {
-      course = await Course.findOne({ _id: courseId, teacher: req.user.id });
+      course = await Course.findOne({
+        _id: courseId,
+        teacher: req.user.id,
+      }).populate('lessons');
     }
 
     if (!course) {
       return res.status(404).json({
         success: false,
-        message: 'Course not found or you do not have permission to access it.',
+        message: 'Course not found or you do not have permission.',
       });
     }
 
@@ -304,7 +308,7 @@ const getCourseById = async (req, res) => {
     console.error(err);
     return res.status(500).json({
       success: false,
-      message: 'Error in fetching course',
+      message: 'Error fetching course',
       error: err.message,
     });
   }

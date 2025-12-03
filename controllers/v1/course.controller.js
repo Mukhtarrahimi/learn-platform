@@ -310,6 +310,56 @@ const getCourseById = async (req, res) => {
   }
 };
 
+// Change status
+const changeStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+    const courseId = req.params.id;
+
+    if (!courseId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Course ID is required.',
+      });
+    }
+
+    // Validate the status
+    if (!['draft', 'published'].includes(status)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid status. Must be either "draft" or "published".',
+      });
+    }
+
+    // Update the course status
+    const updatedCourse = await Course.findByIdAndUpdate(
+      courseId,
+      { status },
+      { new: true }
+    );
+
+    if (!updatedCourse) {
+      return res.status(404).json({
+        success: false,
+        message: 'Course not found.',
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Course status updated successfully.',
+      course: updatedCourse,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      success: false,
+      message: 'Error in updating course status.',
+      error: err.message,
+    });
+  }
+};
+
 module.exports = {
   createCourse,
   updateCourse,

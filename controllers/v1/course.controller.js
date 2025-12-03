@@ -271,4 +271,49 @@ const getAllCourses = async (req, res) => {
   }
 };
 
-module.exports = { createCourse, updateCourse, deleteCourse, getAllCourses };
+// Get Course By Id
+const getCourseById = async (req, res) => {
+  try {
+    const courseId = req.params.id;
+    if (!courseId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Course ID is required.',
+      });
+    }
+
+    let course;
+    if (req.user.role === 'admin') {
+      course = await Course.findById(courseId);
+    } else if (req.user.role === 'teacher') {
+      course = await Course.findOne({ _id: courseId, teacher: req.user.id });
+    }
+
+    if (!course) {
+      return res.status(404).json({
+        success: false,
+        message: 'Course not found or you do not have permission to access it.',
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      course,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      success: false,
+      message: 'Error in fetching course',
+      error: err.message,
+    });
+  }
+};
+
+module.exports = {
+  createCourse,
+  updateCourse,
+  deleteCourse,
+  getAllCourses,
+  getCourseById,
+};

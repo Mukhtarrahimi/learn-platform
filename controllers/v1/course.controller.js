@@ -153,4 +153,71 @@ const updateCourse = async (req, res) => {
   }
 };
 
+// DELETE -> Remove Course
+const deleteCourse = async (req, res) => {
+  try {
+    const courseId = req.params.id;
+    if (!courseId) {
+      return res.status(404).json({
+        success: false,
+        message: 'Course not found',
+      });
+    }
+
+    const course = await Course.findById(courseId);
+
+    if (!course) {
+      return res.status(404).json({
+        success: false,
+        message: 'Course not found',
+      });
+    }
+
+    if (req.user.role === 'admin') {
+      await Course.findByIdAndDelete(courseId);
+      return res.status(200).json({
+        success: true,
+        message: 'Course deleted successfully by admin',
+        course: {
+          id: course._id,
+          title: course.title,
+          teacher: course.teacher,
+        },
+      });
+    }
+
+    if (req.user.role === 'teacher') {
+      if (course.teacher.toString() !== req.user.id) {
+        return res.status(403).json({
+          success: false,
+          message: 'You can only delete your own courses',
+        });
+      }
+
+      await Course.findByIdAndDelete(courseId);
+      return res.status(200).json({
+        success: true,
+        message: 'Course deleted successfully by teacher',
+        course: {
+          id: course._id,
+          title: course.title,
+          teacher: course.teacher,
+        },
+      });
+    }
+
+    return res.status(403).json({
+      success: false,
+      message: 'Access denied',
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      success: false,
+      message: 'Error in delete course API',
+      error: err.message,
+    });
+  }
+};
+
 module.exports = { createCourse, updateCourse };

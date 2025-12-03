@@ -57,7 +57,7 @@ const createCourse = async (req, res) => {
       course,
     });
   } catch (err) {
-    console.error(err); // For logging in development
+    console.error(err); // For logging in developmend
     return res.status(500).json({
       success: false,
       message: 'Error in create course API',
@@ -78,7 +78,7 @@ const updateCourse = async (req, res) => {
       level,
       language,
       tags,
-      status = 'draft', // Default to 'draft' if status not provided
+      status = 'draft',
       teacherId,
     } = req.body;
 
@@ -101,6 +101,12 @@ const updateCourse = async (req, res) => {
 
     let finalTeacher;
     if (req.user.role === 'teacher') {
+      if (course.teacher.toString() !== req.user.id) {
+        return res.status(403).json({
+          success: false,
+          message: 'You can only update your own courses.',
+        });
+      }
       finalTeacher = req.user.id;
     } else if (req.user.role === 'admin') {
       if (!teacherId) {
@@ -112,8 +118,8 @@ const updateCourse = async (req, res) => {
       finalTeacher = teacherId;
     }
 
+    // Check if the teacher exists
     const teacher = await User.findById(finalTeacher);
-
     if (!teacher || teacher.role !== 'teacher') {
       return res.status(400).json({
         success: false,
@@ -121,6 +127,7 @@ const updateCourse = async (req, res) => {
       });
     }
 
+    // Update course
     const updatedCourse = await Course.findByIdAndUpdate(
       courseId,
       {

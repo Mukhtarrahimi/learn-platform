@@ -39,6 +39,7 @@ const createCourseSchema = Joi.object({
   teacherId: Joi.string().optional().messages({
     'string.base': 'Teacher ID must be a string',
   }),
+  status: Joi.string().valid('draft', 'published').optional(),
 });
 
 const updateCourseSchema = Joi.object({
@@ -76,6 +77,7 @@ const updateCourseSchema = Joi.object({
   teacherId: Joi.string().optional().messages({
     'string.base': 'Teacher ID must be a string',
   }),
+  status: Joi.string().valid('draft', 'published').optional(),
 });
 
 module.exports = { createCourseSchema, updateCourseSchema };

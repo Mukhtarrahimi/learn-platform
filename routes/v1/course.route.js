@@ -46,6 +46,6 @@ router.get('/', verifyToken, checkAdminOrTeacher, getAllCourses);
 router.get('/:id', verifyToken, checkAdminOrTeacher, getCourseById);
 
 // PUT -> Change Course Status
-router.put('/:id', verifyToken, checkAdmin, changeStatus);
+router.put('/status/:id', verifyToken, checkAdmin, changeStatus);
 
 module.exports = router;

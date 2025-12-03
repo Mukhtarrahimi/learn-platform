@@ -47,14 +47,6 @@ const courseSchema = new mongoose.Schema(
       default: 'english',
     },
 
-    lessons: [
-      {
-        title: String,
-        videoUrl: String,
-        duration: Number,
-      },
-    ],
-
     studentsCount: {
       type: Number,
       default: 0,
@@ -75,5 +67,15 @@ const courseSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+// =============== VIRTUAL LESSONS ===============
+courseSchema.virtual('lessons', {
+  ref: 'Lesson',
+  localField: '_id',
+  foreignField: 'course',
+});
+
+courseSchema.set('toJSON', { virtuals: true });
+courseSchema.set('toObject', { virtuals: true });
 
 module.exports = mongoose.model('Course', courseSchema);

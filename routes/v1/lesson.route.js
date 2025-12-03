@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const verifyToken = require('../../middlewares/verifyToken');
-const checkAdminOrTeacher = require('../../middlewares/checkAdminOrTeacher');
+const checkAdminOrTeacher = require('../../middlewares/checkAdminOrTeacher ');
 const validate = require('../../middlewares/validate');
 
 const {

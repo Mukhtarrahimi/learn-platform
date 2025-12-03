@@ -259,6 +259,7 @@ const getAllCourses = async (req, res) => {
     res.status(200).json({
       success: true,
       courses,
+      total: courses.length,
     });
   } catch (err) {
     console.error(err);
@@ -270,4 +271,4 @@ const getAllCourses = async (req, res) => {
   }
 };
 
-module.exports = { createCourse, updateCourse, deleteCourse };
+module.exports = { createCourse, updateCourse, deleteCourse, getAllCourses };

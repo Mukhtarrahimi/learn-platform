@@ -331,23 +331,38 @@ const getCourseById = async (req, res) => {
   }
 };
 
-// Get Courrse By Category
+// Get Courses By Category
 const getCoursesByCategory = async (req, res) => {
   try {
     const categoryId = req.params.categoryId;
+
     if (!categoryId) {
       return res.status(400).json({
         success: false,
         message: 'Category ID is required.',
       });
     }
-    const courses = await Course.find({ category: categoryId });
+
+    const categoryExist = await Category.findById(categoryId);
+    if (!categoryExist) {
+      return res.status(404).json({
+        success: false,
+        message: 'Category not found.',
+      });
+    }
+
+    const courses = await Course.find({ category: categoryId }).populate(
+      'teacher',
+      'name email'
+    );
+
     if (!courses || courses.length === 0) {
       return res.status(404).json({
         success: false,
         message: 'No courses found for this category.',
       });
     }
+
     res.status(200).json({
       success: true,
       total: courses.length,
@@ -357,7 +372,7 @@ const getCoursesByCategory = async (req, res) => {
     console.error(err);
     return res.status(500).json({
       success: false,
-      message: 'Error fetching course By Category',
+      message: 'Error fetching courses by category',
       error: err.message,
     });
   }
@@ -419,5 +434,6 @@ module.exports = {
   deleteCourse,
   getAllCourses,
   getCourseById,
+  getCoursesByCategory,
   changeStatus,
 };

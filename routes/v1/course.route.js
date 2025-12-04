@@ -45,6 +45,9 @@ router.get('/', verifyToken, checkAdminOrTeacher, getAllCourses);
 // GET -> Get Course By Id
 router.get('/:id', verifyToken, checkAdminOrTeacher, getCourseById);
 
+// GET -> Get Course By Category
+router.get('/category/:categoryId', verifyToken, checkAdmin, getAllCourses);
+
 // PUT -> Change Course Status
 router.put('/status/:id', verifyToken, checkAdmin, changeStatus);
 

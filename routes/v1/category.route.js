@@ -9,6 +9,7 @@ const {
   updateCategory,
   getAllCategories,
   getCategoryById,
+  getCategoryBySlug,
 } = require('../../controllers/v1/category.controller');
 const {
   createCategorySchema,
@@ -35,5 +36,7 @@ router.put(
 router.get('/', verifyToken, checkAdmin, getAllCategories);
 // GET -> get category by ID
 router.get('/:id', verifyToken, checkAdmin, getCategoryById);
+// GET -> get category by Slug
+router.get('/slug/:slug', verifyToken, checkAdmin, getCategoryBySlug);
 
 module.exports = router;

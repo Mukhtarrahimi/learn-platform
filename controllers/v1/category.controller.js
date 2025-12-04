@@ -62,7 +62,7 @@ const updateCategory = async (req, res) => {
     console.log(err);
     res.status(500).json({
       success: false,
-      message: 'error in creating category api',
+      message: 'error in update category api',
       error: err.message,
     });
   }
@@ -81,13 +81,46 @@ const getAllCategories = async (req, res) => {
     res.status(200).json({
       success: true,
       message: 'categories fetched successfully',
+      total: categories.length,
       categories,
     });
   } catch (err) {
     console.log(err);
     res.status(500).json({
       success: false,
-      message: 'error in creating category api',
+      message: 'error in get all categories api',
+      error: err.message,
+    });
+  }
+};
+
+// Get category by ID
+const getCategoryById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: 'category id is required',
+      });
+    }
+    const category = await Category.findById(id);
+    if (!category) {
+      return res.status(404).json({
+        success: false,
+        message: 'category not found',
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: 'category fetched successfully',
+      category,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: 'error in get category by id api',
       error: err.message,
     });
   }

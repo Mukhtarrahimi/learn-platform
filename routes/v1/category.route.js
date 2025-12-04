@@ -31,6 +31,6 @@ router.put(
   updateCategory
 );
 // GET -> get all categories
-router.get('/', verifyToken, checkAdmin, updateCategory);
+router.get('/', verifyToken, checkAdmin, getAllCategories);
 
 module.exports = router;

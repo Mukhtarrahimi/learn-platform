@@ -331,6 +331,38 @@ const getCourseById = async (req, res) => {
   }
 };
 
+// Get Courrse By Category
+const getCoursesByCategory = async (req, res) => {
+  try {
+    const categoryId = req.params.categoryId;
+    if (!categoryId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Category ID is required.',
+      });
+    }
+    const courses = await Course.find({ category: categoryId });
+    if (!courses || courses.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'No courses found for this category.',
+      });
+    }
+    res.status(200).json({
+      success: true,
+      total: courses.length,
+      courses,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({
+      success: false,
+      message: 'Error fetching course By Category',
+      error: err.message,
+    });
+  }
+};
+
 // Change status
 const changeStatus = async (req, res) => {
   try {

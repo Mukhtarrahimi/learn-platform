@@ -1,15 +1,31 @@
 const Course = require('../../models/course.model');
 const User = require('../../models/user.model');
+const Category = require('../../models/category.model');
 
 // CREATE NEW COURSE
 const createCourse = async (req, res) => {
   try {
+    const categoryId = req.body.category;
+    if (!categoryId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Category ID is required',
+      });
+    }
+
+    const category = await Category.findById(categoryId);
+    if (!category) {
+      return res.status(404).json({
+        success: false,
+        message: 'Category not found',
+      });
+    }
+
     const {
       title,
       description,
       price,
       thumbnail,
-      category,
       level,
       language,
       tags,
@@ -17,6 +33,7 @@ const createCourse = async (req, res) => {
     } = req.body;
 
     let finalTeacher;
+
     if (req.user.role === 'teacher') {
       finalTeacher = req.user.id;
     } else if (req.user.role === 'admin') {
@@ -43,12 +60,12 @@ const createCourse = async (req, res) => {
       description,
       price,
       thumbnail,
-      category,
+      category: categoryId,
       level,
       language,
       tags,
       teacher: finalTeacher,
-      status: 'draft', // Default status if not provided
+      status: 'draft',
     });
 
     res.status(201).json({
@@ -57,7 +74,7 @@ const createCourse = async (req, res) => {
       course,
     });
   } catch (err) {
-    console.error(err); // For logging in developmend
+    console.error(err);
     return res.status(500).json({
       success: false,
       message: 'Error in create course API',

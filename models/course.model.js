@@ -32,7 +32,8 @@ const courseSchema = new mongoose.Schema(
     },
 
     category: {
-      type: String,
+      type: mongoose.Types.ObjectId,
+      rer: 'Category',
       required: true,
     },
 

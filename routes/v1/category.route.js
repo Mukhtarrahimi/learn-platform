@@ -8,6 +8,7 @@ const {
   createCategory,
   updateCategory,
   getAllCategories,
+  getCategoryById,
 } = require('../../controllers/v1/category.controller');
 const {
   createCategorySchema,
@@ -32,5 +33,7 @@ router.put(
 );
 // GET -> get all categories
 router.get('/', verifyToken, checkAdmin, getAllCategories);
+// GET -> get category by ID
+router.get('/:id', verifyToken, checkAdmin, getCategoryById);
 
 module.exports = router;

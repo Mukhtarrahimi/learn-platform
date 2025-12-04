@@ -130,4 +130,5 @@ module.exports = {
   createCategory,
   updateCategory,
   getAllCategories,
+  getCategoryById,
 };

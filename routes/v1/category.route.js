@@ -10,6 +10,7 @@ const {
   getAllCategories,
   getCategoryById,
   getCategoryBySlug,
+  deleteCategoryById,
 } = require('../../controllers/v1/category.controller');
 const {
   createCategorySchema,
@@ -38,5 +39,7 @@ router.get('/', verifyToken, checkAdmin, getAllCategories);
 router.get('/:id', verifyToken, checkAdmin, getCategoryById);
 // GET -> get category by Slug
 router.get('/slug/:slug', verifyToken, checkAdmin, getCategoryBySlug);
+// DELETE -> delete category by ID
+router.delete('/:id', verifyToken, checkAdmin, deleteCategoryById);
 
 module.exports = router;

@@ -197,4 +197,5 @@ module.exports = {
   getAllCategories,
   getCategoryById,
   getCategoryBySlug,
+  deleteCategoryById,
 };

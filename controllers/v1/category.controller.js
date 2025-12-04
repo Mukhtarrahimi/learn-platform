@@ -126,9 +126,42 @@ const getCategoryById = async (req, res) => {
   }
 };
 
+// Get category by slug
+const getCategoryBySlug = async (req, res) => {
+  try {
+    const slug = req.params.slug;
+    if (!slug) {
+      return res.status(400).json({
+        success: false,
+        message: 'category slug is required',
+      });
+    }
+    const category = await Category.findOne(slug);
+    if (!category) {
+      return res.status(404).json({
+        success: false,
+        message: 'category not found',
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: 'category fetched successfully',
+      category,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: 'error in get category by slug api',
+      error: err.message,
+    });
+  }
+};
+
 module.exports = {
   createCategory,
   updateCategory,
   getAllCategories,
   getCategoryById,
+  getCategoryBySlug,
 };

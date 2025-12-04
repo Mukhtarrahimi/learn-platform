@@ -136,7 +136,7 @@ const getCategoryBySlug = async (req, res) => {
         message: 'category slug is required',
       });
     }
-    const category = await Category.findOne(slug);
+    const category = await Category.find({ slug });
     if (!category) {
       return res.status(404).json({
         success: false,
@@ -146,6 +146,7 @@ const getCategoryBySlug = async (req, res) => {
     res.status(200).json({
       success: true,
       message: 'category fetched successfully',
+      total: category.length,
       category,
     });
   } catch (err) {
@@ -153,6 +154,38 @@ const getCategoryBySlug = async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'error in get category by slug api',
+      error: err.message,
+    });
+  }
+};
+
+// Delete category by id
+const deleteCategoryById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: 'category id is required',
+      });
+    }
+    const category = await Category.findByIdAndDelete(id);
+    if (!category) {
+      return res.status(404).json({
+        success: false,
+        message: 'category not found',
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: 'category deleted successfully',
+      category,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: 'error in delete category by id api',
       error: err.message,
     });
   }

@@ -9,6 +9,7 @@ const {
   createComment,
   getCommentsByCourse,
   changeCommentStatus,
+  deleteComment,
 } = require('../../controllers/v1/comment.controller');
 
 // POST -> Create New Comment
@@ -22,4 +23,6 @@ router.put(
   checkAdmin,
   changeCommentStatus
 );
+// DELETE -> Delete Comment
+router.delete('/:commentId', verifyToken, checkAdmin, deleteComment);
 module.exports = router;

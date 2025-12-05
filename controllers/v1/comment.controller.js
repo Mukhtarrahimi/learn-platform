@@ -184,4 +184,9 @@ const deleteComment = async (req, res) => {
   }
 };
 
-module.exports = { createComment, getCommentsByCourse, changeCommentStatus };
+module.exports = {
+  createComment,
+  getCommentsByCourse,
+  changeCommentStatus,
+  deleteComment,
+};

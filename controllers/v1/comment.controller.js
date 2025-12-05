@@ -52,7 +52,7 @@ const getCommentsByCourse = async (req, res) => {
     const courseId = req.params.courseId;
 
     // Validate courseId
-    if (!courseId || !mongoose.Types.ObjectId.isValid(courseId)) {
+    if (!courseId) {
       return res.status(400).json({
         success: false,
         message: 'Invalid or missing course ID',
@@ -100,4 +100,62 @@ const getCommentsByCourse = async (req, res) => {
   }
 };
 
-module.exports = { createComment, getCommentsByCourse };
+// Change comment status (admin only)
+const changeCommentStatus = async (req, res) => {
+  try {
+    const { commentId, status } = req.body;
+
+    //  Validation
+    if (!commentId || !status) {
+      return res.status(400).json({
+        success: false,
+        message: 'commentId and status are required',
+      });
+    }
+
+    //  Only admin can change status
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({
+        success: false,
+        message: 'Only admin can change comment status',
+      });
+    }
+
+    // 3. Status validation
+    const validStatuses = ['pending', 'approved', 'rejected'];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({
+        success: false,
+        message: `Status must be one of: ${validStatuses.join(', ')}`,
+      });
+    }
+
+    //  Find comment
+    const comment = await Comment.findById(commentId);
+    if (!comment) {
+      return res.status(404).json({
+        success: false,
+        message: 'Comment not found',
+      });
+    }
+
+    // Update status
+    comment.status = status;
+    await comment.save();
+
+    res.status(200).json({
+      success: true,
+      message: 'Comment status updated successfully',
+      comment,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: 'Error in change comment status API',
+      error: err.message,
+    });
+  }
+};
+
+module.exports = { createComment, getCommentsByCourse, changeCommentStatus };

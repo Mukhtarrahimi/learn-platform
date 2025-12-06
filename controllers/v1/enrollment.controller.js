@@ -90,7 +90,7 @@ const getAllEnrollCourse = async (req, res) => {
 };
 
 // Get student count for a specific course
-export const getStudentCountForCourse = async (req, res) => {
+const getStudentCountForCourse = async (req, res) => {
   try {
     const { courseId } = req.params;
 
@@ -103,7 +103,7 @@ export const getStudentCountForCourse = async (req, res) => {
 
     const totalStudents = await Enrollment.countDocuments({
       course: courseId,
-    });
+    }).populate('user');
 
     res.status(200).json({
       success: true,

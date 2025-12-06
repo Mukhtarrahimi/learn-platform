@@ -33,11 +33,11 @@ const createLesson = async (req, res) => {
         message: 'Lesson already exists in this course',
       });
     }
-
+    const videoUrlPath = req.file ? req.file.path : null;
     // 4. Create lesson
     const lesson = await Lesson.create({
       title,
-      videoUrl,
+      video: videoUrlPath,
       description,
       duration,
       course,
@@ -72,6 +72,7 @@ const updateLesson = async (req, res) => {
       });
     }
 
+    const videoUrlPath = req.file ? req.file.path : lesson.videoUrl;
     // Teacher can only update own lessons
     const course = await Course.findById(lesson.course);
     if (req.user.role === 'teacher') {
@@ -84,7 +85,7 @@ const updateLesson = async (req, res) => {
     }
 
     lesson.title = title ?? lesson.title;
-    lesson.videoUrl = videoUrl ?? lesson.videoUrl;
+    if (req.file) lesson.video = req.file.path;
     lesson.description = description ?? lesson.description;
     lesson.duration = duration ?? lesson.duration;
 

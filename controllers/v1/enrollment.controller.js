@@ -89,7 +89,39 @@ const getAllEnrollCourse = async (req, res) => {
   }
 };
 
+// Get student count for a specific course
+export const getStudentCountForCourse = async (req, res) => {
+  try {
+    const { courseId } = req.params;
+
+    if (!courseId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Course ID is required',
+      });
+    }
+
+    const totalStudents = await Enrollment.countDocuments({
+      course: courseId,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: 'Student count fetched successfully',
+      courseId,
+      totalStudents,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching student count',
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   enrollCourse,
   getAllEnrollCourse,
+  getStudentCountForCourse,
 };

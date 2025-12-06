@@ -3,6 +3,7 @@ const router = express.Router();
 const verifyToken = require('../../middlewares/verifyToken');
 const checkAdminOrTeacher = require('../../middlewares/checkAdminOrTeacher ');
 const validate = require('../../middlewares/validate');
+const upload = require('../../middlewares/upload');
 
 const {
   createLessonSchema,
@@ -24,6 +25,7 @@ router.post(
   verifyToken,
   checkAdminOrTeacher,
   validate(createLessonSchema),
+  upload.single('video'),
   createLesson
 );
 
@@ -33,6 +35,7 @@ router.put(
   verifyToken,
   checkAdminOrTeacher,
   validate(updateLessonSchema),
+  upload.single('video'),
   updateLesson
 );
 

@@ -2,9 +2,11 @@ const express = require('express');
 const router = express.Router();
 const verifyToken = require('../../middlewares/verifyToken');
 const checkAdmin = require('../../middlewares/checkAdmin');
-const checkTeacher = require('../../middlewares/checkAdmin');
-const checkAdminOrTeacher = require('../../middlewares/checkAdminOrTeacher ');
+const checkTeacher = require('../../middlewares/checkTeacher');
+const checkAdminOrTeacher = require('../../middlewares/checkAdminOrTeacher');
 const validate = require('../../middlewares/validate');
+// upload multer utils
+const upload = require('../../utils/multer');
 const {
   createCourseSchema,
   updateCourseSchema,
@@ -15,6 +17,7 @@ const {
   updateCourse,
   deleteCourse,
   getAllCourses,
+  getCoursesByCategory,
   getCourseById,
   changeStatus,
 } = require('../../controllers/v1/course.controller');
@@ -25,6 +28,7 @@ router.post(
   verifyToken,
   checkAdminOrTeacher,
   validate(createCourseSchema),
+  upload.single('thumbnail'),
   createCourse
 );
 // PUT -> Update Coruse
@@ -33,6 +37,7 @@ router.put(
   verifyToken,
   checkAdminOrTeacher,
   validate(updateCourseSchema),
+  upload.single('thumbnail'),
   updateCourse
 );
 
@@ -46,7 +51,12 @@ router.get('/', verifyToken, checkAdminOrTeacher, getAllCourses);
 router.get('/:id', verifyToken, checkAdminOrTeacher, getCourseById);
 
 // GET -> Get Course By Category
-router.get('/category/:categoryId', verifyToken, checkAdmin, getAllCourses);
+router.get(
+  '/category/:categoryId',
+  verifyToken,
+  checkAdmin,
+  getCoursesByCategory
+);
 
 // PUT -> Change Course Status
 router.put('/status/:id', verifyToken, checkAdmin, changeStatus);

@@ -54,12 +54,12 @@ const createCourse = async (req, res) => {
         message: 'Invalid teacherId. User must be a teacher.',
       });
     }
-
+    const thumbnailPath = req.file ? req.file.path : null;
     const course = await Course.create({
       title,
       description,
       price,
-      thumbnail,
+      thumbnail: thumbnailPath,
       category: categoryId,
       level,
       language,
@@ -144,6 +144,7 @@ const updateCourse = async (req, res) => {
       });
     }
 
+    const thumbnailPath = req.file ? req.file.path : course.thumbnail;
     // Update course
     const updatedCourse = await Course.findByIdAndUpdate(
       courseId,
@@ -151,7 +152,7 @@ const updateCourse = async (req, res) => {
         title,
         description,
         price,
-        thumbnail,
+        thumbnail: thumbnailPath,
         category,
         level,
         language,

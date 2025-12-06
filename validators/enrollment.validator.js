@@ -23,10 +23,6 @@ const enrollCourseSchema = Joi.object({
   transactionId: Joi.string().optional().allow(null, ''),
 });
 
-const validateEnrollCourse = (data) => {
-  return enrollCourseSchema.validate(data, { abortEarly: false });
-};
-
 module.exports = {
-  validateEnrollCourse,
+  enrollCourseSchema,
 };

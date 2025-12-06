@@ -43,7 +43,8 @@ const enrollCourse = async (req, res) => {
     const enrollment = await Enrollment.create({
       user: userId,
       course: courseId,
-      status: 'paid',
+      status: 'enrolled',
+      paymentStatus: 'paid',
       price: course.price,
     });
     res.status(201).json({
@@ -61,6 +62,34 @@ const enrollCourse = async (req, res) => {
   }
 };
 
+// Get All Enrolled Courses
+const getAllEnrollCourse = async (req, res) => {
+  try {
+    const enrollCourses = await Enrollment.find();
+
+    if (!enrollCourses || enrollCourses.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'No enrolled courses available',
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Enrolled courses fetched successfully',
+      enrollCourses,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: 'Error in get enrolled courses API',
+      error: err.message,
+    });
+  }
+};
+
 module.exports = {
   enrollCourse,
+  getAllEnrollCourse,
 };

@@ -5,5 +5,5 @@ const validate = require('../../middlewares/validate');
 const verifyToken = require('../../middlewares/verifyToken');
 const { enrollCourseSchema } = require('../../validators/enrollment.validator');
 // POST -> Enroll in a Course
-router.post('/', verifyToken, validate(enrollCourseSchema), enrollCourse);
+router.post('/enroll', verifyToken, validate(enrollCourseSchema), enrollCourse);
 module.exports = router;

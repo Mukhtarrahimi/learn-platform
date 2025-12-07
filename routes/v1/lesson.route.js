@@ -3,7 +3,7 @@ const router = express.Router();
 const verifyToken = require('../../middlewares/verifyToken');
 const checkAdminOrTeacher = require('../../middlewares/checkAdminOrTeacher ');
 const validate = require('../../middlewares/validate');
-const upload = require('../../middlewares/upload');
+const upload = require('../../utils/multer');
 
 const {
   createLessonSchema,

@@ -25,6 +25,31 @@ const createContact = async (req, res) => {
   }
 };
 
+// Get  All Contacts - Admin Only
+const getAllContacts = async (req, res) => {
+  try {
+    const contacts = await Contact.find().sort({ createdAt: -1 });
+    if (!contacts || contacts.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'No contacts found',
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: 'Contacts retrieved successfully',
+      contacts,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: 'Error getAllContacts api',
+      error: err.message,
+    });
+  }
+};
+
 module.exports = {
   createContact,
 };

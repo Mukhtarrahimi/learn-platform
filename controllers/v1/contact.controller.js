@@ -25,7 +25,7 @@ const createContact = async (req, res) => {
   }
 };
 
-// Get  All Contacts - Admin Only
+// Get  All Contacts
 const getAllContacts = async (req, res) => {
   try {
     const contacts = await Contact.find().sort({ createdAt: -1 });
@@ -50,7 +50,33 @@ const getAllContacts = async (req, res) => {
   }
 };
 
+// Remove Contact - Admin Only
+const removeContact = async (req, res) => {
+  try {
+    const { contactId } = req.params;
+    const contact = await Contact.findByIdAndDelete(contactId);
+    if (!contact) {
+      return res.status(404).json({
+        success: false,
+        message: 'Contact not found',
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: 'Contact removed successfully',
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: 'Error Remove contact api',
+      error: err.message,
+    });
+  }
+};
+
 module.exports = {
   createContact,
   getAllContacts,
+  removeContact,
 };

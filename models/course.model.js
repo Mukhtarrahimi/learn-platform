@@ -53,4 +53,7 @@ courseSchema.virtual('lessons', {
 courseSchema.set('toJSON', { virtuals: true });
 courseSchema.set('toObject', { virtuals: true });
 
+// TEXT INDEX FOR SEARCH
+courseSchema.index({ title: 'text', description: 'text' });
+
 module.exports = mongoose.model('Course', courseSchema);

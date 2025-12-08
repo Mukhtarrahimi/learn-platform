@@ -61,6 +61,12 @@ router.delete('/users/delete', verifyToken, checkAdmin, deleteUser);
 router.put('/users/:id/status', verifyToken, checkAdmin, changeUserStatus);
 
 // POST /api/v1/send-email/reply
-router.post('/reply', checkAdmin, validate(createReplySchema), sendMailReply);
+router.post(
+  '/contacts/reply',
+  verifyToken,
+  checkAdmin,
+  validate(createReplySchema),
+  sendMailReply
+);
 
 module.exports = router;

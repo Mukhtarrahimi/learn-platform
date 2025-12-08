@@ -13,6 +13,7 @@ const categoryRoute = require('./routes/v1/category.route');
 const commentRoute = require('./routes/v1/comment.route');
 const enrollmentRoute = require('./routes/v1/enrollment.route');
 const contactRoute = require('./routes/v1/contact.route');
+const favoriteCourseRoute = require('./routes/v1/favoriteCourse.route');
 
 // Middleware
 app.use(express.json());
@@ -30,6 +31,7 @@ app.use('/api/v1/categories', categoryRoute);
 app.use('/api/v1/comments', commentRoute);
 app.use('/api/v1/enrollments', enrollmentRoute);
 app.use('/api/v1/contacts', contactRoute);
+app.use('/api/v1/favorite-courses', favoriteCourseRoute);
 
 // Route 404
 app.use((req, res, next) => {

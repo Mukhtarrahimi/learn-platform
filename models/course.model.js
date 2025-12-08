@@ -2,38 +2,19 @@ const mongoose = require('mongoose');
 
 const courseSchema = new mongoose.Schema(
   {
-    title: {
-      type: String,
-      required: true,
-      trim: true,
-      minlength: 3,
-    },
-
-    description: {
-      type: String,
-      trim: true,
-      minlength: 10,
-    },
-
-    price: {
-      type: Number,
-      default: 0,
-    },
-
-    thumbnail: {
-      type: String,
-      default: null,
-    },
+    title: { type: String, required: true, trim: true, minlength: 3 },
+    description: { type: String, trim: true, minlength: 10 },
+    price: { type: Number, default: 0 },
+    thumbnail: { type: String, default: null },
 
     teacher: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true,
     },
-
     category: {
-      type: mongoose.Types.ObjectId,
-      rer: 'Category',
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category',
       required: true,
     },
 
@@ -42,16 +23,9 @@ const courseSchema = new mongoose.Schema(
       enum: ['beginner', 'intermediate', 'advanced'],
       default: 'beginner',
     },
+    language: { type: String, default: 'english' },
 
-    language: {
-      type: String,
-      default: 'english',
-    },
-
-    studentsCount: {
-      type: Number,
-      default: 0,
-    },
+    studentsCount: { type: Number, default: 0 },
 
     rating: {
       average: { type: Number, default: 0 },
@@ -59,17 +33,17 @@ const courseSchema = new mongoose.Schema(
     },
 
     tags: [String],
+    status: { type: String, enum: ['draft', 'published'], default: 'draft' },
 
-    status: {
-      type: String,
-      enum: ['draft', 'published'],
-      default: 'draft',
-    },
+    // metric fields
+    // bestSeller optional: می‌توان با studentsCount و sort query جایگزین کرد
+    bestSeller: { type: Number, default: 0 },
+    favoritesCount: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
 
-// =============== VIRTUAL LESSONS ===============
+// VIRTUAL LESSONS
 courseSchema.virtual('lessons', {
   ref: 'Lesson',
   localField: '_id',

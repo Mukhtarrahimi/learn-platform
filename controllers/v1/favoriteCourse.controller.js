@@ -53,6 +53,45 @@ const addFavoriteCourse = async (req, res) => {
   }
 };
 
+// delete course from favorites
+const deleteFavoriteCourse = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const courseId = req.boyd.courseId;
+
+    // validate courseId
+    if (!mongoose.Types.ObjectId.isValid(courseId)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid course id',
+      });
+    }
+    // delete favorite
+    const deletedFavorite = await FavoriteCourse.findOneAndDelete({
+      userId,
+      courseId,
+    });
+    if (!deletedFavorite) {
+      return res.status(404).json({
+        success: false,
+        message: 'Favorite course not found',
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: 'Course removed from favorites',
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: 'Error deleting favorite course',
+      error: err.message,
+    });
+  }
+};
+
 module.exports = {
   addFavoriteCourse,
+  deleteFavoriteCourse,
 };

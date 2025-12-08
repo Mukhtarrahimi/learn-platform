@@ -31,7 +31,7 @@ app.use('/api/v1/categories', categoryRoute);
 app.use('/api/v1/comments', commentRoute);
 app.use('/api/v1/enrollments', enrollmentRoute);
 app.use('/api/v1/contacts', contactRoute);
-app.use('/api/v1/favorite-courses', favoriteCourseRoute);
+app.use('/api/v1/favorites', favoriteCourseRoute);
 
 // Route 404
 app.use((req, res, next) => {

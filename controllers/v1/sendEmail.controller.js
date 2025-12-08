@@ -1,6 +1,6 @@
 const ReplyContact = require('../../models/replyContact.model');
 const Contact = require('../../models/contact.model');
-const sendEmail = require('../../utils/sendEmail');
+const sendEmail = require('../../services/sendEmail');
 
 const sendMailReply = async (req, res) => {
   try {

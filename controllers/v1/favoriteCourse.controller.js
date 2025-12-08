@@ -2,10 +2,11 @@ const FavoriteCourse = require('../../models/favoriteCourse.model');
 const Course = require('../../models/course.model');
 const mongoose = require('mongoose');
 
+// add course to favorites
 const addFavoriteCourse = async (req, res) => {
   try {
     const userId = req.user.id;
-    const courseId = req.body.courseId;
+    const courseId = req.params.courseId;
 
     // validate courseId
     if (!mongoose.Types.ObjectId.isValid(courseId)) {
@@ -53,11 +54,31 @@ const addFavoriteCourse = async (req, res) => {
   }
 };
 
+// get all favorite courses for a user
+const getFavoriteCourses = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const favoriteCourses = await FavoriteCourse.find({ userId }).populate(
+      'courseId'
+    );
+    res.status(200).json({
+      success: true,
+      favoriteCourses,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: 'Error retrieving favorite courses',
+    });
+  }
+};
+
 // delete course from favorites
 const deleteFavoriteCourse = async (req, res) => {
   try {
     const userId = req.user.id;
-    const courseId = req.boyd.courseId;
+    const courseId = req.params.courseId;
 
     // validate courseId
     if (!mongoose.Types.ObjectId.isValid(courseId)) {
@@ -94,4 +115,5 @@ const deleteFavoriteCourse = async (req, res) => {
 module.exports = {
   addFavoriteCourse,
   deleteFavoriteCourse,
+  getFavoriteCourses,
 };

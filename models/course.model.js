@@ -35,8 +35,6 @@ const courseSchema = new mongoose.Schema(
     tags: [String],
     status: { type: String, enum: ['draft', 'published'], default: 'draft' },
 
-    // metric fields
-    // bestSeller optional: می‌توان با studentsCount و sort query جایگزین کرد
     bestSeller: { type: Number, default: 0 },
     favoritesCount: { type: Number, default: 0 },
   },
@@ -52,8 +50,5 @@ courseSchema.virtual('lessons', {
 
 courseSchema.set('toJSON', { virtuals: true });
 courseSchema.set('toObject', { virtuals: true });
-
-// TEXT INDEX FOR SEARCH
-courseSchema.index({ title: 'text', description: 'text' });
 
 module.exports = mongoose.model('Course', courseSchema);

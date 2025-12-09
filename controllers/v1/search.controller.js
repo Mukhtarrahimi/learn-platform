@@ -1,9 +1,12 @@
 const Course = require('../../models/course.model');
 
-// Search courses by title or description
+function escapeRegex(text) {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+}
+
 const searchCourses = async (req, res) => {
   try {
-    const { query, page = 1, limit = 10 } = req.query;
+    const { query } = req.query;
 
     if (!query || query.trim() === '') {
       return res.status(400).json({
@@ -12,15 +15,15 @@ const searchCourses = async (req, res) => {
       });
     }
 
-    const skip = (page - 1) * limit;
+    const escapedQuery = escapeRegex(query);
 
-    const result = await Course.find(
-      { $text: { $search: query }, status: 'published' },
-      { score: { $meta: 'textScore' } }
-    )
-      .sort({ score: { $meta: 'textScore' } })
-      .skip(skip)
-      .limit(parseInt(limit));
+    const result = await Course.find({
+      status: 'published',
+      $or: [
+        { title: { $regex: '.*' + escapedQuery + '.*', $options: 'i' } },
+        { description: { $regex: '.*' + escapedQuery + '.*', $options: 'i' } },
+      ],
+    });
 
     res.status(200).json({
       success: true,

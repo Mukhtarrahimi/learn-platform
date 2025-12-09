@@ -24,6 +24,22 @@ const getMe = async (req, res) => {
     });
   }
 };
+// UPDATE PROFILE
+const updateProfile = async (req, res) => {
+  try {
+    const { name, phone, email } = req.body;
+
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      { name, phone, email },
+      { new: true }
+    ).select('-hash_password -refreshToken');
+
+    res.status(200).json({ success: true, user });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Error updating profile' });
+  }
+};
 
 module.exports = {
   getMe,

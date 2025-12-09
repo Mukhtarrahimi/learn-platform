@@ -1,7 +1,7 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
 
-const menuValidationSchema = Joi.object({
+const createMenuSchema = Joi.object({
   title: Joi.string().trim().min(1).max(100).required(),
 
   link: Joi.string().trim().uri({ allowRelative: true }).required(),
@@ -21,4 +21,4 @@ const menuValidationSchema = Joi.object({
   isActive: Joi.boolean().default(true),
 });
 
-module.exports = menuValidationSchema;
+module.exports = { createMenuSchema };

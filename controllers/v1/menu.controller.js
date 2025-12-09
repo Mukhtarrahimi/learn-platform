@@ -31,3 +31,7 @@ const createMenu = async (req, res) => {
     });
   }
 };
+
+module.exports = {
+  createMenu,
+};

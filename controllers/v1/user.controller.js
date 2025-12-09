@@ -41,6 +41,33 @@ const updateProfile = async (req, res) => {
   }
 };
 
+// CHANGE PASSWORD
+const changePassword = async (req, res) => {
+  try {
+    const { oldPassword, newPassword } = req.body;
+
+    const user = await User.findById(req.user.id).select('+hash_password');
+
+    const isMatch = await bcrypt.compare(oldPassword, user.hash_password);
+    if (!isMatch) {
+      return res
+        .status(400)
+        .json({ success: false, message: 'Old password is incorrect' });
+    }
+
+    user.hash_password = newPassword;
+    await user.save();
+
+    res
+      .status(200)
+      .json({ success: true, message: 'Password changed successfully' });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ success: false, message: 'Error changing password' });
+  }
+};
+
 module.exports = {
   getMe,
 };

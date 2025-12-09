@@ -1,6 +1,9 @@
 const User = require('../../models/user.model');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const { accessToken, refreshToken } = require('../../middlewares/token');
+
+// REGISTER
 const register = async (req, res) => {
   try {
     const { name, username, email, phone, password, role } = req.body;
@@ -19,8 +22,9 @@ const register = async (req, res) => {
       email,
       hash_password: password,
       phone,
-      role: 'student',
+      role: role || 'student',
     });
+
     res.status(201).json({
       success: true,
       message: 'User successfully registered',
@@ -36,7 +40,7 @@ const register = async (req, res) => {
   }
 };
 
-// LOGIN USER
+// LOGIN
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -71,6 +75,9 @@ const login = async (req, res) => {
     const access_Token = accessToken(user);
     const refresh_Token = refreshToken(user);
 
+    user.refreshToken = refresh_Token;
+    await user.save();
+
     res.status(200).json({
       success: true,
       message: 'User login successful',
@@ -90,9 +97,11 @@ const login = async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Error in login API',
+      error: err.message,
     });
   }
 };
+
 // LOGOUT
 const logout = async (req, res) => {
   try {
@@ -124,33 +133,29 @@ const logout = async (req, res) => {
 };
 
 // REFRESH TOKEN
-const refreshToken = async (req, res) => {
+const refreshTokenController = async (req, res) => {
   try {
-    const { refreshToken } = req.body;
-    if (!refreshToken)
+    const { refreshToken: token } = req.body;
+    if (!token)
       return res
         .status(401)
         .json({ success: false, message: 'No refresh token provided' });
 
-    const user = await User.findOne({ refreshToken });
+    const user = await User.findOne({ refreshToken: token });
     if (!user)
       return res
         .status(403)
         .json({ success: false, message: 'Invalid refresh token' });
 
-    jwt.verify(
-      refreshToken,
-      process.env.REFRESH_TOKEN_SECRET,
-      (err, decoded) => {
-        if (err)
-          return res
-            .status(403)
-            .json({ success: false, message: 'Invalid refresh token' });
+    jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err) => {
+      if (err)
+        return res
+          .status(403)
+          .json({ success: false, message: 'Invalid refresh token' });
 
-        const newAccessToken = accessToken(user);
-        res.status(200).json({ accessToken: newAccessToken });
-      }
-    );
+      const newAccessToken = accessToken(user);
+      res.status(200).json({ accessToken: newAccessToken });
+    });
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -160,4 +165,4 @@ const refreshToken = async (req, res) => {
   }
 };
 
-module.exports = { register, login, logout, refreshToken };
+module.exports = { register, login, logout, refreshTokenController };

@@ -1,9 +1,29 @@
 const express = require('express');
 const router = express.Router();
-const { getMe } = require('../../controllers/v1/user.controller');
 const verifyToken = require('../../middlewares/verifyToken');
+const validate = require('../../middlewares/validate');
+const {
+  updateProfileSchema,
+  changePasswordSchema,
+} = require('../../validators/user.validator');
+const {
+  getMe,
+  updateProfile,
+  changePassword,
+} = require('../../controllers/user.controller');
 
-// GETME
 router.get('/me', verifyToken, getMe);
+router.put(
+  '/profile',
+  verifyToken,
+  validate(updateProfileSchema),
+  updateProfile
+);
+router.put(
+  '/change-password',
+  verifyToken,
+  validate(changePasswordSchema),
+  changePassword
+);
 
 module.exports = router;

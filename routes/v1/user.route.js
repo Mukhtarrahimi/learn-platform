@@ -10,7 +10,7 @@ const {
   getMe,
   updateProfile,
   changePassword,
-} = require('../../controllers/user.controller');
+} = require('../../controllers/v1/user.controller');
 
 router.get('/me', verifyToken, getMe);
 router.put(

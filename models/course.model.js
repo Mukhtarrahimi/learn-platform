@@ -50,5 +50,6 @@ courseSchema.virtual('lessons', {
 
 courseSchema.set('toJSON', { virtuals: true });
 courseSchema.set('toObject', { virtuals: true });
+courseSchema.index({ title: 'text', description: 'text', tags: 'text' });
 
 module.exports = mongoose.model('Course', courseSchema);

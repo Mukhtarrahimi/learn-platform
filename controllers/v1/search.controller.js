@@ -1,7 +1,7 @@
 const Course = require('../../models/course.model');
 
 function escapeRegex(text) {
-  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+  return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // escape regex special chars
 }
 
 const searchCourses = async (req, res) => {
@@ -20,8 +20,8 @@ const searchCourses = async (req, res) => {
     const result = await Course.find({
       status: 'published',
       $or: [
-        { title: { $regex: '.*' + escapedQuery + '.*', $options: 'i' } },
-        { description: { $regex: '.*' + escapedQuery + '.*', $options: 'i' } },
+        { title: { $regex: escapedQuery, $options: 'i' } },
+        { description: { $regex: escapedQuery, $options: 'i' } },
       ],
     });
 

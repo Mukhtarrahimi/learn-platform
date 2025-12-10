@@ -23,11 +23,11 @@ const getMe = async (req, res) => {
 // UPDATE PROFILE
 const updateProfile = async (req, res) => {
   try {
-    const { name, phone, profile } = req.body;
+    const { name, phone } = req.body;
 
     const user = await User.findByIdAndUpdate(
       req.user.id,
-      { name, phone, profile },
+      { name, phone },
       { new: true }
     ).select('-hash_password -refreshToken');
 

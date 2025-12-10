@@ -15,7 +15,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 // Routes
 app.use('/api/v1/auth', authRoute);
-app.use('/api/v1/user', userRoute);
+app.use('/api/v1/users', userRoute);
 
 // Route 404
 app.use((req, res, next) => {

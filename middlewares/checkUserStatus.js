@@ -1,8 +1,11 @@
 const checkUserStatus = (req, res, next) => {
-  if (req.user.status !== 'active') {
+  if (!req.user || req.user.status !== 'active') {
     return res.status(403).json({
       success: false,
-      message: 'your account is not active',
+      message:
+        req.user?.status === 'banned'
+          ? 'Your account has been permanently banned'
+          : 'Your account is temporarily blocked',
     });
   }
   next();

@@ -130,4 +130,5 @@ module.exports = {
   createMenu,
   updateMenu,
   deleteMenu,
+  getMenus,
 };

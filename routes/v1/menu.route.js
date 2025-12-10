@@ -11,6 +11,7 @@ const {
   createMenu,
   updateMenu,
   deleteMenu,
+  getMenus,
 } = require('../../controllers/v1/menu.controller');
 
 // Create Menu
@@ -19,4 +20,6 @@ router.post('/', verify, checkAdmin, validate(createMenuSchema), createMenu);
 router.put('/:id', verify, checkAdmin, validate(createMenuSchema), updateMenu);
 // Delete Menu
 router.delete('/:id', verify, checkAdmin, deleteMenu);
+// Get Menus
+router.get('/', getMenus);
 module.exports = router;

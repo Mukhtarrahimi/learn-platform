@@ -6,6 +6,13 @@ const morgan = require('morgan');
 if (process.env.ENVIRONMENT === 'development') {
   app.use(morgan('dev'));
 }
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err.message);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+});
 
 const startServer = async () => {
   try {

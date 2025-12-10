@@ -88,6 +88,44 @@ const deleteMenu = async (req, res) => {
   }
 };
 
+const getMenus = async (req, res) => {
+  try {
+    const menus = await Menu.find({ isActive: true }).sort({ order: 1 }).lean();
+
+    const menuMap = {};
+    menus.forEach((menu) => {
+      menu.subMenus = [];
+      menuMap[String(menu._id)] = menu;
+    });
+
+    const topMenus = [];
+
+    menus.forEach((menu) => {
+      if (menu.parentId) {
+        const parent = menuMap[String(menu.parentId)];
+        if (parent) {
+          parent.subMenus.push(menu);
+        }
+      } else {
+        topMenus.push(menu);
+      }
+    });
+
+    res.status(200).json({
+      success: true,
+      message: 'Menus fetched successfully',
+      menus: topMenus,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching menus',
+      error: err.message,
+    });
+  }
+};
+
 module.exports = {
   createMenu,
   updateMenu,

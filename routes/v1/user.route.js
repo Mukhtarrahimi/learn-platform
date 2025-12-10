@@ -12,6 +12,7 @@ const {
   getMe,
   updateProfile,
   changePassword,
+  getAllUser,
 } = require('../../controllers/v1/user.controller');
 
 router.get('/me', checkUserStatus, verifyToken, getMe);
@@ -29,5 +30,8 @@ router.put(
   validate(changePasswordSchema),
   changePassword
 );
+
+// IS ADMIN ----------------------
+router.get('/users', verifyToken, checkAdmin, getAllUser);
 
 module.exports = router;

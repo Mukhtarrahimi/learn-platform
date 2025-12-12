@@ -103,17 +103,18 @@ const getCommentsByCourse = async (req, res) => {
 // Change comment status (admin only)
 const changeCommentStatus = async (req, res) => {
   try {
-    const { commentId, status } = req.body;
+    const { status } = req.body;
+    const commentId = req.params.commentId;
 
-    //  Validation
-    if (!commentId || !status) {
+    // Validation
+    if (!status) {
       return res.status(400).json({
         success: false,
-        message: 'commentId and status are required',
+        message: 'Status is required',
       });
     }
 
-    //  Only admin can change status
+    // Only admin can change comment status
     if (req.user.role !== 'admin') {
       return res.status(403).json({
         success: false,
@@ -121,7 +122,7 @@ const changeCommentStatus = async (req, res) => {
       });
     }
 
-    // 3. Status validation
+    // Valid statuses
     const validStatuses = ['pending', 'approved', 'rejected'];
     if (!validStatuses.includes(status)) {
       return res.status(400).json({
@@ -130,7 +131,7 @@ const changeCommentStatus = async (req, res) => {
       });
     }
 
-    //  Find comment
+    // Find comment
     const comment = await Comment.findById(commentId);
     if (!comment) {
       return res.status(404).json({

@@ -16,5 +16,10 @@ router.post('/', verifyToken, validate(createCommentSchema), createComment);
 // GET -> Get Comments By Course ID
 router.get('/course/:courseId', verifyToken, getCommentsByCourse);
 // PUT -> Change Comment Status
-router.put('/:commentId/status', verifyToken, checkAdmin, changeCommentStatus);
+router.put(
+  '/course/:commentId/status',
+  verifyToken,
+  checkAdmin,
+  changeCommentStatus
+);
 module.exports = router;

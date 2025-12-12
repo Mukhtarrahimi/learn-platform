@@ -30,3 +30,7 @@ const createCategory = async (req, res) => {
     });
   }
 };
+
+module.exports = {
+  createCategory,
+};

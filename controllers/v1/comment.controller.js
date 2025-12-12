@@ -159,4 +159,29 @@ const changeCommentStatus = async (req, res) => {
   }
 };
 
+// delete a comment
+const deleteComment = async (req, res) => {
+  try {
+    const commentId = req.params.commentId;
+    const comment = await Comment.findByIdAndDelete(commentId);
+    if (!comment) {
+      return res.status(404).json({
+        success: false,
+        message: 'Comment not found',
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: 'Comment deleted successfully',
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: 'Error in change comment status API',
+      error: err.message,
+    });
+  }
+};
+
 module.exports = { createComment, getCommentsByCourse, changeCommentStatus };

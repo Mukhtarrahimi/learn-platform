@@ -31,6 +31,7 @@ const createCategory = async (req, res) => {
   }
 };
 
+// Update an existing category
 const updateCategory = async (req, res) => {
   try {
     const id = req.params.id;
@@ -69,4 +70,5 @@ const updateCategory = async (req, res) => {
 
 module.exports = {
   createCategory,
+  updateCategory,
 };

@@ -7,6 +7,7 @@ const verifyToken = require('../../middlewares/verifyToken');
 const {
   createCategory,
   updateCategory,
+  getAllCategories,
 } = require('../../controllers/v1/category.controller');
 const {
   createCategorySchema,
@@ -29,5 +30,7 @@ router.put(
   validate(updateCategorySchema),
   updateCategory
 );
+// GET -> get all categories
+router.get('/', verifyToken, checkAdmin, updateCategory);
 
 module.exports = router;

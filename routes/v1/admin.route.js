@@ -3,11 +3,15 @@ const router = express.Router();
 const verifyToken = require('../../middlewares/verifyToken');
 const checkAdmin = require('../../middlewares/checkAdmin');
 const validate = require('../../middlewares/validate');
+// Validators
 const {
   registerSchema,
   updateProfileSchema,
 } = require('../../validators/user.validator');
-
+const {
+  createReplySchema,
+} = require('../../validators/replyContact.validator');
+// Controllers
 const {
   getAllUser,
   getUserById,
@@ -18,6 +22,7 @@ const {
   updateUserByAdmin,
 } = require('../../controllers/v1/admin.controller');
 
+const sendMailReply = require('../../controllers/v1/sendEmail.controller');
 // POST create new user
 router.post(
   '/users/register',
@@ -54,5 +59,8 @@ router.delete('/users/delete', verifyToken, checkAdmin, deleteUser);
 
 // Change User Status
 router.put('/users/:id/status', verifyToken, checkAdmin, changeUserStatus);
+
+// POST /api/v1/send-email/reply
+router.post('/reply', checkAdmin, validate(createReplySchema), sendMailReply);
 
 module.exports = router;

@@ -10,9 +10,16 @@ const { enrollCourseSchema } = require('../../validators/enrollment.validator');
 const {
   enrollCourse,
   getAllEnrollCourse,
+  getStudentCountForCourse,
 } = require('../../controllers/v1/enrollment.controller');
 // POST -> Enroll in a Course
 router.post('/enroll', verifyToken, validate(enrollCourseSchema), enrollCourse);
 // GET -> Get All Enrollments
 router.get('/', verifyToken, getAllEnrollCourse);
+// GET -> Get Student Count for a Specific Course
+router.get(
+  '/course/:courseId/student-count',
+  verifyToken,
+  getStudentCountForCourse
+);
 module.exports = router;

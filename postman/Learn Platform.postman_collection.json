@@ -1,0 +1,1863 @@
+{
+	"info": {
+		"_postman_id": "6c0e6a8e-5a0d-4b88-a401-728b4d368cf1",
+		"name": "Learn Platform",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49730271",
+		"_collection_link": "https://mukhtarrahimi749-8975621.postman.co/workspace/Mukhtar-Rahimi's-Workspace~2677b14b-17c0-4cf2-8c51-1950f69b2851/collection/49730271-6c0e6a8e-5a0d-4b88-a401-728b4d368cf1?source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Get All User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTM0NjgxMSwiZXhwIjoxNzY1MzQ3NzExfQ.eThx5dwCcouJ8ASNFECg5MjeO4zjlNB471YdiyktCKY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"oldPassword\": \"12345678\",\r\n  \"newPassword\": \"00000000\",\r\n  \"confirmPassword\": \"00000000\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTM0NjgxMSwiZXhwIjoxNzY1MzQ3NzExfQ.eThx5dwCcouJ8ASNFECg5MjeO4zjlNB471YdiyktCKY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"oldPassword\": \"12345678\",\r\n  \"newPassword\": \"00000000\",\r\n  \"confirmPassword\": \"00000000\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/users/692bbd853e60bbb20831718c",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"users",
+								"692bbd853e60bbb20831718c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By Query",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTM0Nzc5OSwiZXhwIjoxNzY1MzQ4Njk5fQ.LPaiKfIxiB7twS-8cog9-BU1_H3B8uGMUQKYRDYsEPc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"hussaini@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/users/search?email=hussaini@gmail.com",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"users",
+								"search"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "hussaini@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change User Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDU3MjMxOCwiZXhwIjoxNzY0NTczMjE4fQ.h89l2O-pkD8LRMC-Rk9OCKrq9PztBhJOQniWsvsjTxQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"banned\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/users/692d3b671b41228dcff68ea8/status",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"users",
+								"692d3b671b41228dcff68ea8",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDU3Mzc1NSwiZXhwIjoxNzY0NTc0NjU1fQ.eQIPG46p90A4JqUseIRN0953oR0YJ8rw6_cYIikb6Hw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Ali Mandegar\",\r\n  \"username\": \"Mandegar\",\r\n  \"email\": \"mandeger@gmail.com\",\r\n  \"phone\": \"09854321\",\r\n  \"password\": \"12345678\",\r\n  \"confirmPassword\": \"12345678\",\r\n  \"role\": \"teacher\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/users/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDU3NTA2NywiZXhwIjoxNzY0NTc1OTY3fQ.r0hPsSugMj6C_vKozxxXXrA60tde1Av5IaoRPr720pI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Mohammad Mandegar\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/users/692d4576c13240c0c707a81a",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"users",
+								"692d4576c13240c0c707a81a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reply Contact",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTY0MzM1NCwiZXhwIjoxNzY1NjQ2OTU0fQ.AO1wpeLBnAHaQEDAua20Jb5e5tvUhrp_Odl_Fh_VuJs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"contactId\": \"693d93eca7f8c156ef1598b5\",\r\n  \"message\": \"با تشکر از پیام شما، پاسخ شما این است...\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/contacts/reply",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"contacts",
+								"reply"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Ali Hussaini\",\r\n  \"username\": \"hussaini\",\r\n  \"email\": \"hussaini@gmail.com\",\r\n  \"phone\": \"1111111111\",\r\n  \"password\": \"12345678\",\r\n  \"confirmPassword\": \"12345678\",\r\n  \"role\": \"student\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"rahimi@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJiZDg1M2U2MGJiYjIwODMxNzE4YyIsImVtYWlsIjoibWFoZGlAZ21haWwuY29tIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3NjQ0NzQyNjMsImV4cCI6MTc2NDQ3NTE2M30.r-XZmguMkxm0q1LP4_Aias_dhSoOQ8GS_nrMFxLwOjA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"hussaini@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"hussaini@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/refresh_token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"refresh_token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get Me",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJiZDg1M2U2MGJiYjIwODMxNzE4YyIsImVtYWlsIjoibWFoZGlAZ21haWwuY29tIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3NjUzMzg5NTEsImV4cCI6MTc2NTMzOTg1MX0.2nGadVfPTvctmvWVlVMC2MGsxHaLusoeUMPBI_arerE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"hussaini@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/users/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJiZDg1M2U2MGJiYjIwODMxNzE4YyIsImVtYWlsIjoibWFoZGlAZ21haWwuY29tIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3NjUzMzg5NTEsImV4cCI6MTc2NTMzOTg1MX0.2nGadVfPTvctmvWVlVMC2MGsxHaLusoeUMPBI_arerE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"S Mahdi\",\r\n  \"phone\": \"078888888888\"\r\n  \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/users/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJiZDg1M2U2MGJiYjIwODMxNzE4YyIsImVtYWlsIjoibWFoZGlAZ21haWwuY29tIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3NjUzMzg5NTEsImV4cCI6MTc2NTMzOTg1MX0.2nGadVfPTvctmvWVlVMC2MGsxHaLusoeUMPBI_arerE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"oldPassword\": \"12345678\",\r\n  \"newPassword\": \"00000000\",\r\n  \"confirmPassword\": \"00000000\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/users/me/password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"me",
+								"password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Courses",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDk5NTkxOCwiZXhwIjoxNzY0OTk5NTE4fQ.TDqxWG0qa1l9THdux_R1ViXGyrDjZMBnMvdJMBlyjAc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "React Advanced",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Master React and build complex applications",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "3000",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "693ba5d1fdfc7c803c033a4c",
+									"type": "text"
+								},
+								{
+									"key": "level",
+									"value": "advanced",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "react, frontend, javascript",
+									"type": "text"
+								},
+								{
+									"key": "teacherId",
+									"value": "692d4576c13240c0c707a81a",
+									"type": "text"
+								},
+								{
+									"key": "thumbnail",
+									"type": "file",
+									"src": "/C:/Users/Rahimi/Downloads/react-f02200115da09fd485a296e351972d7ea75701ed8d3d023d9f18c4b38e6b18b0.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/courses/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"courses",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmZiOGU2ZTIzNTczMzM3MGVmOTQ3NSIsImVtYWlsIjoicWFzaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNzY0NzM1NDEwLCJleHAiOjE3NjQ3MzYzMTB9.y78bVvFbACkTch-EtesCXgrhQ0CAemoo7_GUWEI7Is0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Advaced Mern Django.js\",\r\n  \"description\": \"A comprehensive course to learn Node.js from scratch.\",\r\n  \"price\": 400,\r\n  \"thumbnail\": \"https://example.com/nodejs-thumbnail.jpg\",\r\n  \"category\": \"Programming\",\r\n  \"level\": \"advanced\",\r\n  \"language\": \"english\",\r\n  \"tags\": [\"Node.js\", \"JavaScript\", \"Backend\", \"API\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/courses/692fba000ef32d38a981ff92",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"courses",
+								"692fba000ef32d38a981ff92"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDczNjczNSwiZXhwIjoxNzY0NzM3NjM1fQ.VFNKXdTqpNJEkX5TwcWh5k3yonHrVZuFPdUjmXYoJbo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Python for Beginners\",\r\n  \"description\": \"A comprehensive course to learn Node.js from scratch.\",\r\n  \"price\": 300,\r\n  \"thumbnail\": \"https://example.com/nodejs-thumbnail.jpg\",\r\n  \"category\": \"Programming\",\r\n  \"level\": \"beginner\",\r\n  \"language\": \"english\",\r\n  \"tags\": [\"Node.js\", \"JavaScript\", \"Backend\", \"API\"],\r\n  \"teacherId\": \"692d4576c13240c0c707a81a\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/courses/692fba000ef32d38a981ff92",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"courses",
+								"692fba000ef32d38a981ff92"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmZiOGU2ZTIzNTczMzM3MGVmOTQ3NSIsImVtYWlsIjoicWFzaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNzY0NzM4MTc2LCJleHAiOjE3NjQ3MzkwNzZ9.VCM3TTwFcrHPn4oUeJZ6BFP2snNu8-uHH-d1q04FE3g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Python for Beginners\",\r\n  \"description\": \"A comprehensive course to learn Node.js from scratch.\",\r\n  \"price\": 300,\r\n  \"thumbnail\": \"https://example.com/nodejs-thumbnail.jpg\",\r\n  \"category\": \"Programming\",\r\n  \"level\": \"beginner\",\r\n  \"language\": \"english\",\r\n  \"tags\": [\"Node.js\", \"JavaScript\", \"Backend\", \"API\"],\r\n  \"teacherId\": \"692d4576c13240c0c707a81a\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/courses",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDc3OTE4OCwiZXhwIjoxNzY0NzgwMDg4fQ.Tvb1Kb8-IATyPnYyBEa6j-PieuAnXnuOhUHmdsUocrI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Python for Beginners\",\r\n  \"description\": \"A comprehensive course to learn Node.js from scratch.\",\r\n  \"price\": 300,\r\n  \"thumbnail\": \"https://example.com/nodejs-thumbnail.jpg\",\r\n  \"category\": \"Programming\",\r\n  \"level\": \"beginner\",\r\n  \"language\": \"english\",\r\n  \"tags\": [\"Node.js\", \"JavaScript\", \"Backend\", \"API\"],\r\n  \"teacherId\": \"692d4576c13240c0c707a81a\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/courses/692f0920d431db0763f1712b",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"courses",
+								"692f0920d431db0763f1712b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDczOTU2NiwiZXhwIjoxNzY0NzQwNDY2fQ.qf2hVIGZ3PZpzVPzYOj8Tg3HBx2tLPbcT8NZQiCLUgY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"status\" : \"published\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/courses/status/692f0920d431db0763f1712b",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"courses",
+								"status",
+								"692f0920d431db0763f1712b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Course By Category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDgyODUwMiwiZXhwIjoxNzY0ODMyMTAyfQ.FqDe90PnZO4xLGiJ3jsT3CT465fPctnfRp3woxJ2Yrg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"active\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/courses/category/693ba5d1fdfc7c803c033a4c",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"courses",
+								"category",
+								"693ba5d1fdfc7c803c033a4c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lessons",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmQ0NTc2YzEzMjQwYzBjNzA3YTgxYSIsImVtYWlsIjoibWFuZGVnZXJAZ21haWwuY29tIiwicm9sZSI6InRlYWNoZXIiLCJpYXQiOjE3NjQ5OTcxMDIsImV4cCI6MTc2NTAwMDcwMn0.Jjv6LBSzpi27_KArwOJ_ObfmRiUd-w8q6tBuWq0HBJQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Introduction to React",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "React basics and JSX syntax.",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "08:50",
+									"type": "text"
+								},
+								{
+									"key": "course",
+									"value": "6933b47b774e28410ab20b8e",
+									"type": "text"
+								},
+								{
+									"key": "video",
+									"type": "file",
+									"src": "/D:/Videos/Adam Moradi - آدام مرادی - رفیق مواظب تله های زندگی باش_اینا هیچ کدوم موفقیت نیست _ واسه نداشتنشون غصه نخوری ها __این(.mp4"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/lessons",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"lessons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDc3ODA1MSwiZXhwIjoxNzY0Nzc4OTUxfQ.5aIFrEg3j6WgDtAflLdttV3h2YAmYLxNQj0jG7A073Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"how to use python language?\",\r\n  \"description\": \"Explaining backend basics.\",\r\n  \"duration\": \"45\",\r\n  \"course\": \"692f0920d431db0763f1712b\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/lessons/693060b01db51a81c2a16c46",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"lessons",
+								"693060b01db51a81c2a16c46"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDc3ODA1MSwiZXhwIjoxNzY0Nzc4OTUxfQ.5aIFrEg3j6WgDtAflLdttV3h2YAmYLxNQj0jG7A073Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"how to use python?\",\r\n  \"description\": \"Explaining backend basics.\",\r\n  \"duration\": \"45\",\r\n  \"course\": \"692f0920d431db0763f1712b\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/lessons/6930607c1db51a81c2a16c3e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"lessons",
+								"6930607c1db51a81c2a16c3e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDc3ODA1MSwiZXhwIjoxNzY0Nzc4OTUxfQ.5aIFrEg3j6WgDtAflLdttV3h2YAmYLxNQj0jG7A073Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"how to use python?\",\r\n  \"description\": \"Explaining backend basics.\",\r\n  \"duration\": \"45\",\r\n  \"course\": \"692f0920d431db0763f1712b\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/lessons",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"lessons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Lesson By Course Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDc3ODA1MSwiZXhwIjoxNzY0Nzc4OTUxfQ.5aIFrEg3j6WgDtAflLdttV3h2YAmYLxNQj0jG7A073Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"how to use python?\",\r\n  \"description\": \"Explaining backend basics.\",\r\n  \"duration\": \"45\",\r\n  \"course\": \"692f0920d431db0763f1712b\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/lessons/course/692fbe146b68642e3aaad6c7",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"lessons",
+								"course",
+								"692fbe146b68642e3aaad6c7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Lesson Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDc3ODA1MSwiZXhwIjoxNzY0Nzc4OTUxfQ.5aIFrEg3j6WgDtAflLdttV3h2YAmYLxNQj0jG7A073Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"how to use python?\",\r\n  \"description\": \"Explaining backend basics.\",\r\n  \"duration\": \"45\",\r\n  \"course\": \"692f0920d431db0763f1712b\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/lessons/6930609b1db51a81c2a16c42",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"lessons",
+								"6930609b1db51a81c2a16c42"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Enrollments",
+			"item": [
+				{
+					"name": "Enroll",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzI4MzY4NTBhMGRhZmE4MWQ1MDUyYyIsImVtYWlsIjoiaHVzc2FpbmlAZ21haWwuY29tIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3NjU1NTI5NTEsImV4cCI6MTc2NTU1NjU1MX0.vybpq1605z3xTjZryoCYV-V_dYgLRnFDYCaLjXruuHM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": \"6932836850a0dafa81d5052c\",\r\n  \"courseId\": \"692f0920d431db0763f1712b\",\r\n  \"paymentStatus\": \"paid\",\r\n  \"transactionId\": \"TX123456\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/enrollments/enroll",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"enrollments",
+								"enroll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Enrollment Course",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzI4MzY4NTBhMGRhZmE4MWQ1MDUyYyIsImVtYWlsIjoiaHVzc2FpbmlAZ21haWwuY29tIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3NjQ5OTI5NTQsImV4cCI6MTc2NDk5NjU1NH0.ilgGW9kx4tanZwUmTKkcVY3IPezs-OFv0WEb_qYblE0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": \"6932836850a0dafa81d5052c\",\r\n  \"courseId\": \"692f0920d431db0763f1712b\",\r\n  \"paymentStatus\": \"paid\",\r\n  \"transactionId\": \"TX123456\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/enrollments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"enrollments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Student Count For Course",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzI4MzY4NTBhMGRhZmE4MWQ1MDUyYyIsImVtYWlsIjoiaHVzc2FpbmlAZ21haWwuY29tIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3NjU1OTg2NTQsImV4cCI6MTc2NTYwMjI1NH0.8eSRg9EqlBoYIC33-5FN4PnRl2pPoE0VCjCX_AwXUwk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": \"6932836850a0dafa81d5052c\",\r\n  \"courseId\": \"692f0920d431db0763f1712b\",\r\n  \"paymentStatus\": \"paid\",\r\n  \"transactionId\": \"TX123456\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/enrollments/course/692f0920d431db0763f1712b/student-count",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"enrollments",
+								"course",
+								"692f0920d431db0763f1712b",
+								"student-count"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDgyNjU3MCwiZXhwIjoxNzY0ODI3NDcwfQ.IKsSo_awszeFUL_4l8dcDDNTKUoSf39TZk4q9o1SeS4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Mobile Developmentt\",\r\n  \"description\": \"Build Android and iOS apps using React Native or Flutter.jjjj\",\r\n  \"slug\": \"mobile-developmentg\",\r\n  \"status\": \"inactive\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTUxNjYxNywiZXhwIjoxNzY1NTE3NTE3fQ.9iVrIbX45aUyZFGML8YOZSN1U8Xv7olLuCIhcEz90n4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"active\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/categories/693ba612f87d6a2011a6f297",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"693ba612f87d6a2011a6f297"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Categories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTUxNjYxNywiZXhwIjoxNzY1NTE3NTE3fQ.9iVrIbX45aUyZFGML8YOZSN1U8Xv7olLuCIhcEz90n4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"active\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDgyNjU3MCwiZXhwIjoxNzY0ODI3NDcwfQ.IKsSo_awszeFUL_4l8dcDDNTKUoSf39TZk4q9o1SeS4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"active\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/categories/693ba5d1fdfc7c803c033a4c",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"693ba5d1fdfc7c803c033a4c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category By Slug",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDgyNjU3MCwiZXhwIjoxNzY0ODI3NDcwfQ.IKsSo_awszeFUL_4l8dcDDNTKUoSf39TZk4q9o1SeS4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"active\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/categories/slug/backend-development",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"slug",
+								"backend-development"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDgyNjU3MCwiZXhwIjoxNzY0ODI3NDcwfQ.IKsSo_awszeFUL_4l8dcDDNTKUoSf39TZk4q9o1SeS4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"active\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/categories/69312052e705fde1601a75ed",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"69312052e705fde1601a75ed"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDk0Mzk4MSwiZXhwIjoxNzY0OTQ3NTgxfQ.cO-k1U6TzKxlhdhK08Sw-CwIu1ZUBBCGZSFB2YjCe-o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": \"This course is really dfdfdfdfdfdfd and clear!\",\r\n  \"course\": \"69312386c71f157ed656821e\",\r\n  \"rating\": 5\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/comments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments By Course ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTU0NjQ3MiwiZXhwIjoxNzY1NTUwMDcyfQ.4befoHXIaWLzjCcEKmK_s1Zqwuf3tbH-eyGVlktG-sQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"active\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/comments/course/69312386c71f157ed656821e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comments",
+								"course",
+								"69312386c71f157ed656821e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Comment Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTU0NjQ3MiwiZXhwIjoxNzY1NTUwMDcyfQ.4befoHXIaWLzjCcEKmK_s1Zqwuf3tbH-eyGVlktG-sQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"approved\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/comments/course/6932841c50a0dafa81d50533/status",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comments",
+								"course",
+								"6932841c50a0dafa81d50533",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDk0NDA5MSwiZXhwIjoxNzY0OTQ3NjkxfQ.8AWkE6SF4zTiOB9q0z3ePMqpxrFi8pdR7di2qXsZiFo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"active\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/comments/6932e87e12117ccdd9581e74",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comments",
+								"6932e87e12117ccdd9581e74"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contact",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Behzad\",\r\n  \"email\": \"mukhtarrahimi749@gmail.com\",\r\n  \"phone\": \"0790416359\",\r\n  \"message\": \"when you share the django course\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/contacts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Contacts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NDk0Mzk4MSwiZXhwIjoxNzY0OTQ3NTgxfQ.cO-k1U6TzKxlhdhK08Sw-CwIu1ZUBBCGZSFB2YjCe-o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": \"This course is really dfdfdfdfdfdfd and clear!\",\r\n  \"course\": \"69312386c71f157ed656821e\",\r\n  \"rating\": 5\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/contacts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTEwMzQ2NSwiZXhwIjoxNzY1MTA3MDY1fQ.aLcCb0Dl4VOz3L20mG7GuqWKMFhncYLEHOmDTB0Y7s4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"mandeger@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/contacts/69355532c6264647c6c75403",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"contacts",
+								"69355532c6264647c6c75403"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Favorite Course",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzI4MzY4NTBhMGRhZmE4MWQ1MDUyYyIsImVtYWlsIjoiaHVzc2FpbmlAZ21haWwuY29tIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3NjUxNjc4NTIsImV4cCI6MTc2NTE3MTQ1Mn0.y6fiZT_CMEla6kIBxuFEFMdPtUkj3FAlnBUiiN6g5-g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"courseId\": \"69312334c71f157ed6568218\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/favorites",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"favorites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzI4MzY4NTBhMGRhZmE4MWQ1MDUyYyIsImVtYWlsIjoiaHVzc2FpbmlAZ21haWwuY29tIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3NjUxNjg4MDUsImV4cCI6MTc2NTE3MjQwNX0.XCwLcsp1LyLGF_ziydu6PBQl4NoZMVb8zEva4OZdWDI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"contactId\": \"693d93eca7f8c156ef1598b5\",\r\n  \"message\": \"با تشکر از پیام شما، پاسخ شما این است...\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/favorites/6933b47b774e28410ab20b8e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"favorites",
+								"6933b47b774e28410ab20b8e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MzI4MzY4NTBhMGRhZmE4MWQ1MDUyYyIsImVtYWlsIjoiaHVzc2FpbmlAZ21haWwuY29tIiwicm9sZSI6InN0dWRlbnQiLCJpYXQiOjE3NjUxNjg4MDUsImV4cCI6MTc2NTE3MjQwNX0.XCwLcsp1LyLGF_ziydu6PBQl4NoZMVb8zEva4OZdWDI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"contactId\": \"693d93eca7f8c156ef1598b5\",\r\n  \"message\": \"با تشکر از پیام شما، پاسخ شما این است...\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/favorites",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"favorites"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Search",
+			"item": [
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTY0MzM1NCwiZXhwIjoxNzY1NjQ2OTU0fQ.AO1wpeLBnAHaQEDAua20Jb5e5tvUhrp_Odl_Fh_VuJs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/search?query=node.js",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"search"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "node.js"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Menu",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTY5NjE1MSwiZXhwIjoxNzY1Njk5NzUxfQ.HbHUvObkOuIf8354NfPO1UpWJ5T5n5cKMGXLe5FZUfI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Settings\",\r\n  \"link\": \"/settings\",\r\n  \"order\": 3,\r\n  \"isActive\": false\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/menus",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"menus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTY5NjE1MSwiZXhwIjoxNzY1Njk5NzUxfQ.HbHUvObkOuIf8354NfPO1UpWJ5T5n5cKMGXLe5FZUfI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Settings\",\r\n  \"link\": \"/settings\",\r\n  \"order\": 3,\r\n  \"isActive\": false\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/menus/693e62b31e644365bb380aa0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"menus",
+								"693e62b31e644365bb380aa0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTM1NjE0OCwiZXhwIjoxNzY1MzU5NzQ4fQ.kBzRYZ5VAyDuEAGbNPu8WQikOoI_BrwRfZ6tGVq-88w",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/menus/693e62b31e644365bb380aa0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"menus",
+								"693e62b31e644365bb380aa0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MmJkMjlhY2Y3MDVlYjc4MWNjZTBmOSIsImVtYWlsIjoicmFoaW1pQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTY5NjE1MSwiZXhwIjoxNzY1Njk5NzUxfQ.HbHUvObkOuIf8354NfPO1UpWJ5T5n5cKMGXLe5FZUfI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Settings\",\r\n  \"link\": \"/settings\",\r\n  \"order\": 3,\r\n  \"isActive\": false\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/menus",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"menus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
